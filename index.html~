@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+
+  <title>Zhe Jia's Homepage</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Zhe Jia is currently a senior researcher at Huawei Noah's Ark Lab">
+  <meta name="keywords" content="Zhe Jia, Caltech, geophysics, seismology, earthquake rupture, fault geometry, focal mechanism, tomography">
+  <meta name="author" content="Zhe Jia" />
+
+  <link rel="stylesheet" href="w3.css">
+
+  <style>
+  .w3-sidebar a {font-family: "Roboto", sans-serif}
+  body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+  </style>
+
+  <link rel="icon" type="image/jpg" href="images/zhe_new.jpg">
+  <!--
+  <script src="jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+  });
+  </script>
+  //-->
+
+</head>
+
+
+<body class="w3-content" style="max-width:1000px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-light-grey w3-collapse w3-top w3-right" style="z-index:3;width:150px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <h3><b>ZHE JIA</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-text-black w3-large" style="font-weight:bold">
+    <a href="#home" class="w3-bar-item w3-button">Home</a>
+    <a href="data/CV_Zhe.pdf" class="w3-bar-item w3-button">CV</a>
+    <a href="#experience" class="w3-bar-item w3-button">Experience</a>
+    <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+    <a href="#publications" class="w3-bar-item w3-button">Publications</a>
+    <a href="#service" class="w3-bar-item w3-button">Services</a>
+    <a href="#award" class="w3-bar-item w3-button">Awards</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-light-grey w3-xlarge">
+  <div class="w3-bar-item w3-padding-24">ZHE JIA</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right"  style="font-stretch: extra-expanded;" onclick="w3_open()"><b>≡</b></a>
+  </div>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:150px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+
+<!-- The Home Section -->
+    <div class="w3-container w3-center w3-padding-32" id="home">
+      <img style="width: 70%;max-width: 240px" alt="profile photo" src="images/zhe_new.jpg">
+      <h1>Zhe Jia</h1>
+        <p class="w3-justify" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;max-width:700px">
+	Zhe Jia is a graduate student of geophysics at <a style="color: #447ec9" href="http://www.seismolab.caltech.edu/">Caltech Seismo Lab</a>. His research interests include resolving <strong>complex earthquakes interacting with complex faults and structures</strong>, mapping <strong>heterogeneous velocity structure in regional scale</strong>, and invesgating <strong>seismology with new technologies</strong> (e.g. DAS and Machine Learning). See the <a style="color: #447ec9" href="data/CV_Zhe.pdf"><strong>CV</strong></a> for more. 
+        </p>
+        <p class="w3-center">
+          <a href="mailto:zjia@caltech.edu">Email</a> &nbsp/&nbsp
+          <a href="https://scholar.google.com/citations?user=aDY5pnkAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
+          <a href="https://orcid.org/0000-0003-0652-2646"> Orcid </a> &nbsp/&nbsp
+          <a href="https://www.researchgate.net/profile/Zhe-Jia-2"> ResearchGate </a>
+        </p>
+        </tbody></table>
+  </div>
+
+<!-- The Research Experience Section -->
+  <div class="w3-container w3-light-grey w3-padding-32" id="experience">
+   <h2>Research Experience</h2>
+<h4><li>Ph.D student at Caltech (2016-)</li></h4>
+<p class="w3-justify">With Prof. <strong>Zhongwen Zhan</strong>, we develop a <strong>Bayesian subevent inversion</strong> algorithm to resolve potential multi-fault rupture processes of large earthquakes, in order to understand the controlling factors of earthquake source properties and probe the <strong>interactions between complex earthquakes and structures</strong>. Related works <a style="color: #447ec9" href="#p1" >1</a>,<a style="color: #447ec9" href="#p2" >2</a>.</p> 
+<p class="w3-justify">For earthquakes being well monitored, we develop a <strong>subevent-guided finite-fault inversion</strong> approach to simultaneously determine rupture process and <strong>fault geometries</strong>, with seismic and geodetic data of various spatial-temporal coverage being combined, and realistic 3D structure incorporated.Related work <a style="color: #447ec9" href="#p3" >3</a>.</p> 
+<p class="w3-justify">For moderate size clustered seismic events, we develop a <strong>Bayesian differential moment tensor inversion</strong> algorithm to remove the common earth structural effects. Related work <a style="color: #447ec9" href="#p4" >4</a>.</p>
+<p class="w3-justify">With Prof. <strong>Robert Clayton</strong>, we expand the seismic tomography for <strong>high resolution basin structure</strong> by combining the aperture of seismic stations and density of industrial arrays. To deal with the big dataset, we develop a machine learning based algorithm to <strong>automatically pick the dispersion curves</strong>.Related works <a style="color: #447ec9" href="#p5" >5</a>,<a style="color: #447ec9" href="#p6" >6</a>.</p>
+<h4><li>M.S. student at USTC (2013-2016)</li></h4>
+<p class="w3-justify">With Prof. <strong>Sidao Ni</strong>, we develop a joint inversion algorithm for <strong>improved earthquake centroid depths</strong> using both waveforms and Rayleigh wave amplitude spectra. Ref <a style="color: #447ec9" href="data/Jia_et_al_JointDepth_2017_PAAG.pdf" >1</a>.</p>
+<p class="w3-justify">We develop a joint inversion algorithm for <strong>improved earthquake full moment tensors</strong> using both regional and teleseismic waves. Ref <a style="color: #447ec9" href="data/Bai_et_al_gCAPjoint_2020_SRL.pdf" >2</a>.</p>
+  </div>
+<!-- The Projects Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h2>Research Projects</h2>
+    <div id="p1">
+	    <h4><li>One doublet in two slabs: the 2018 Fiji deep earthquakes. (Refs <a style="color: #447ec9" href="data/Jia_et_al_FijiDoublet_2020_EPSL.pdf">1</a>,<a style="color: #447ec9" href="data/Liu_et_al_Tonga_2021_GRL.pdf">2</a>).</li></h4>
+	</div>
+        <img style="width:90%;" src="images/Fig1.png"> 
+        <p class="w3-justify">
+	The Fiji-Tonga subduction zone accounts more than 75% of global deep earthquakes, but lacked large ones (M~8). This puzzling deficit was changed by a pair of Fiji-Tonga M8 earthquakes in two weeks, 2018. We analyzed the focal mechanisms, rupture processes, aftershock seismicity and thermal properties, and found that the doublet events may have <strong>ruptured in two distinct slabs</strong>, even though they are only ~250 km from each other! The August M8.2 event occurred in the Tonga slab while the September M7.9 event ruptured in a warm detached Australian slab leaning on the Tonga slab. The 2018 Fiji M8 doublet reflects the complex interaction of slabs near the bottom of the mantle transition zone, and also emphasizes <strong>local slab temperature's primary control</strong> on deep earthquake ruptures and aftershocks. See our <a style="color: #447ec9" href="data/Jia_et_al_FijiDoublet_2020_EPSL.pdf">Fiji EPSL Paper</a> for more details, and our <a style="color: #447ec9" href="data/Liu_et_al_Tonga_2021_GRL.pdf">Tonga GRL Paper</a> for a follow-up fully dynamic simulation study.
+        </p> 
+	<div id="p2">
+		<h4><li>Kinematic ruptures on orthogonal faults: the 2019 Ridgecrest sequence. (Ref <a style="color: #447ec9" href="data/Ross_Idini_Jia_et_al_Ridgecrest_2019_Science.pdf">3</a>).</li></h4></div>
+        <img style="width:90%;" src="images/Fig2.png"> 
+        <p class="w3-justify">
+	In July 2019, a strong earthquake sequence struck the Ridgecrest city and broke the seismic quiescence of Southern California. For quick regional hazard response, it is necessary to integrate the understanding of the earthquake source processes and regional fault structures. Through analyzing seismograms from near and far fields, we found that the Mw 6.4 foreshock on July 4 is composed of three subevents on <strong>interlocked orthogonal faults</strong>. The Mw 7.1 mainshock on July 6 ruptured towards northwest and southeast, and stopped at bifurcation and horsetail faultings. The Mw 6.4 foreshock ruptured towards the hypocenter of the Mw 7.1 mainshock but stopped at a distance of ~4km. The gap was gradually filled by a series of small earthquakes before the Mw 7.1 mainshock, suggesting that the Mw 6.4 foreshock triggers seismic activities that continuously eroded this 4 km barrier, and eventually induced the occurrence of a 7.1 magnitude earthquake. The <strong>multi-fault ruptures</strong> are rarely considered in <strong>seismic hazards</strong>, but the Ridgecrest sequence calls for a re-assessment.  See our <a style="color: #447ec9" href="data/Ross_Idini_Jia_et_al_Ridgecrest_2019_Science.pdf">Ridgecrest Science Paper</a> for more details.
+        </p> 
+	<div id="p3">
+		<h4><li>Superfically complex but in-depth simple fault geometries of the Ridgecrest sequence. (Ref <a style="color: #447ec9" href="data/Jia_et_al_Ridgecrest_2020_GRL.pdf">4</a>).</li></h4></div>
+	<img style="width:100%;" src="images/Fig3.png">
+        <p class="w3-justify">
+	Large earthquakes are often complicated, especially if they occur in relatively immature fault systems. As a good example, the 2019 Ridgecrest sequence ruptured multiple subparallel or orthogonal surface fault traces. How the surface complexities extend to depth and impact earthquake rupture processes is critical for understanding earthquake physics and hazard but hard to assess. By combining a rich dataset of ground shaking (strong motion data, broadband seismograms) and deformation (high rate GPS, InSAR) with realistic 3D structure considered, we found that the <strong>ruptures are substantially simpler at depth than near the surface</strong>, with four faults explaining all the data reasonably well. Interestingly, both the foreshock and the mainshock started at fault junctions and then ruptured multiple faults. Where the two events overlapped, their <strong>slip patterns are largely complementary to each other</strong>. See our <a style="color: #447ec9" href="data/Jia_et_al_Ridgecrest_2020_GRL.pdf">Ridgecrest GRL Paper</a> for more details.
+        </p>  
+	<div id="p4">
+		<h4><li>Bayesian differential moment tensor inversion on North Korea nuclear tests. (Ref <a style="color: #447ec9" href="data/Jia_et_al_DiffMT_2021.pdf">5</a>).</li></h4></div>
+	<img style="width:100%;" src="images/Fig4.png">
+	<p class="w3-justify">
+	Moment tensors are key to seismic discrimination but often require accurate assumption on the Earth structure for estimation. This limits the data availability and the precision of moment tensor inversions. To overcome this difficulty, we develop a differential moment tensor inversion (diffMT) method that <strong>uses relative measurements to remove the Earth's structural effects</strong> shared by clustered events, thereby improves the accuracy of source parameters. In a Bayesian framework, we invert the body- and surface-wave amplitude ratios of an event pair for refined moment tensors. Applications to three North Korea nuclear tests from 2013 to 2016 demonstrate that diffMT <strong>reduces the uncertainties</strong> substantially compared with the traditional waveform-based moment tensor inversion. Our results suggest <strong>high percentages of explosive component</strong> with similar double-couple components for the North Korea nuclear tests. See our <a style="color: #447ec9" href="data/Jia_et_al_DiffMT_2021.pdf">diffMT paper</a> for more details.
+	</p>
+	<div id="p5">
+		<h4><li>Resolving LA Basin structure using industrial dense arrays. (Ref <a style="color: #447ec9" href="data/Jia_et_al_LABasin_2021_JGR.pdf">6</a>).</li></h4></div>
+        <img style="width:100%;" src="images/Fig5.png">
+        <p class="w3-justify">
+	The shallow velocity structure of the Los Angeles (LA) Basin plays an important role in the seismic hazard of this populated area. But most existing velocity models of the LA Basin have limited resolution due to the sparsity of seismic stations, or the restricted coverage of sonic logging and industry reflection profiles. We took a small step forward by <strong>combining the aperture of broadband seismic stations and density of industrial nodal arrays</strong>, and derive a 3D shear wave velocity model, covering a large portion of the central LA Basin for the depths shallower than 3 km. We found that the <strong>small scale heterogeneities are better resolved</strong> compared with the conventional models. We also captured the presence of the Newport-Inglewood fault by a NW-SE trending high velocity belt. Our model could better predict the variations in the shallow crustal amplifications, which can improve <strong>strong ground motion simulations</strong>. See our <a style="color: #447ec9" href="data/Jia_et_al_LABasin_2021_JGR.pdf">LABasin JGR paper</a> for more details.
+        </p>
+	<div id="p6">
+		<h4><li>Automated dispersion curve picking using machine learning. (Ref <a style="color: #447ec9" href="data/Zhang_Jia_et_al_MLDispersion_2020_IEEETGRS.pdf">7</a>).</li></h4></div>
+        <img style="width:100%;" src="images/Fig6.png">
+        <p class="w3-justify">
+	Dispersive surface waves have been important and extensively used for understanding the Earth's structure, since surface waves can be easily extracted from ambient noise correlations and does not depend on a suitable earthquake distribution. However, picking the dispersion curves can be very labor-intensive, particularly when dealing with dense arrays. Here, we develop a machine learning based algorithm to <strong>automatically extract surface wave dispersion curves</strong>. We first convert the standard frequency-time analysis of seismograms into images, then use a convolutional neural network to drive a supervised learning. Our results show that the machine classification is <strong>nearly identical to the human picked phases</strong>. See our <a style="color: #447ec9" href="data/Zhang_Jia_et_al_MLDispersion_2020_IEEETGRS.pdf">MLDispersion IEEETGRS paper</a> for more details.
+        </p>
+  </div>
+  
+ <!-- The Publications Section -->
+  <div class="w3-container w3-padding-32"" id="publications">
+    <h2>Publications</h2>
+      <h4> Papers in Prep.:</h4>
+      <ol>
+<p><li><strong>Spatial heterogeneities of Peru intermediate depth earthquake properties controlled by regional temperature and slab morphology.</strong><br><strong>Jia Z.</strong>, Zhan Z., Tavera H. </p>
+<p><li><strong>Stress transfer of injection induced seismicity revealed by their high precision focal mechanisms.</strong><br><strong>Jia Z.</strong>, Zhan Z. </p>
+      </ol>
+      <h4> Papers in Review:</h4>
+      <ol>
+<p><li><strong>Bayesian differential moment tensor inversion: theory and application to the North Korea nuclear tests.</strong><br><strong>Jia Z.</strong>, Zhan Z., <strong>2021</strong>, <em>Geophysical Journal International</em>.  <a style="color: #447ec9" href="data/Jia_et_al_DiffMT_2021.pdf">pdf</a> </p>
+      </ol>
+      <h4> Papers Published:</h4>
+<ol>
+<p><li><strong>Determination of Near Surface Shear-Wave Velocities in the Central Los Angeles Basin with Dense Arrays.</strong><br><strong>Jia Z.</strong>, Clayton R., <strong>2021</strong>, <em>Journal of Geophysical Research: Solid Earth</em>. <a style="color: #447ec9" href="data/Jia_et_al_LABasin_2021_JGR.pdf">pdf</a></p>
+<p><li><strong>Tonga Slab Morphology and Stress Variations Controlled by a Relic Slab: Implications for Deep Earthquakes in the Tonga-Fiji Region.</strong><br>Liu H., Gurnis M., Leng W., <strong>Jia Z.</strong>, Zhan Z., <strong>2021</strong>, <em>Geophysical Research Letters</em>. <a style="color: #447ec9" href="data/Liu_et_al_Tonga_2021_GRL.pdf">pdf</a></p>
+<p><li><strong>gCAPjoint, A Software Package for Full Moment Tensor Inversion of Moderately Strong Earthquakes with Local and Teleseismic Waveforms.</strong><br>Bai Q., Ni S., Chu R., <strong>Jia Z.</strong>, <strong>2020</strong>, <em>Seismological Research Letters</em>. <a style="color: #447ec9" href="data/Bai_et_al_gCAPjoint_2020_SRL.pdf">pdf</a></p>
+<p><li><strong>Multi-fault models of the 2019 Ridgecrest sequence highlight complementary slip and fault junction instability.</strong><br><strong>Jia Z.</strong>, Wang X., Zhan Z., <strong>2020</strong>, <em>Geophysical Research Letters</em>. <a style="color: #447ec9" href="data/Jia_et_al_Ridgecrest_2020_GRL.pdf">pdf</a></p>
+<p><li><strong>Extracting dispersion curves from ambient noise correlations using deep learning.</strong><br>Zhang X., <strong>Jia Z.</strong>, Ross Z., Clayton R., <strong>2020</strong>, <em>IEEE Transactions on Geoscience and Remote Sensing</em>. <a style="color: #447ec9" href="data/Zhang_Jia_et_al_MLDispersion_2020_IEEETGRS.pdf">pdf</a></p>
+<p><li><strong>The 2018 Fiji Mw 8.2 and 7.9 deep earthquakes: One doublet in two slabs.</strong><br><strong>Jia Z.</strong>, Shen Z., Zhan Z., Li C., Peng Z., Gurnis M., <strong>2020</strong>, <em>Earth and Planetary Science Letters</em>. <a style="color: #447ec9" href="data/Jia_et_al_FijiDoublet_2020_EPSL.pdf">pdf</a></p>
+<p><li><strong>Hierarchical interlocked orthogonal faulting in the 2019 Ridgecrest earthquake sequence.</strong><br>Ross Z., Idini B., <strong>Jia Z.</strong>, et al., <strong>2019</strong>, <em>Science</em>. <a style="color: #447ec9" href="data/Ross_Idini_Jia_et_al_Ridgecrest_2019_Science.pdf">pdf</a></p>
+<p><li><strong>The cause of the 2011 Hawthorne (Nevada) earthquake swarm constrained by seismic and InSAR methods.</strong><br>Zha X., <strong>Jia Z.</strong>, et al., <strong>2019</strong>, <em>Journal of Geodesy</em>. <a style="color: #447ec9" href="data/Zha_et_al_Hawthorne_2019_JG.pdf">pdf</a></p>
+<p><li><strong>Joint inversion for earthquake depths using local waveforms and amplitude spectra of Rayleigh waves.</strong><br><strong>Jia Z.</strong>, Ni S., Chu R., Zhan Z., <strong>2017</strong>, <em>Pure and Applied Geophysics</em>. <a style="color: #447ec9" href="data/Jia_et_al_JointDepth_2017_PAAG.pdf">pdf</a></p>
+<p><li><strong>CAPjoint, a computer software package for joint inversion of moderate earthquake source parameters with local and teleseismic waveforms.</strong><br>Chen W., Ni S., Kanamori H., Wei S., <strong>Jia Z.</strong>, Zhu L., <strong>2015</strong>, <em>Seismological Research Letters</em>. <a style="color: #447ec9" href="data/Chen_et_al_CAPjoint_2015_SRL.pdf">pdf</a></p>
+<p><li><strong>Preliminary study on aftershock decay rate of the 2013 Ms7.0 Lushan earthquake.</strong><br><strong>Jia Z.</strong>, Chen W., Chu R., <strong>2013</strong>, <em>Earthquake Science</em>. <a style="color: #447ec9" href="data/Jia_et_al_Lushan_2013_EqSci.pdf">pdf</a></p>
+</ol>
+
+    </p>
+  </div>
+
+<!-- The Services Section -->
+  <div class="w3-container w3-light-grey w3-padding-32" id="service">
+    <h2>Services</h2>
+     <h4>Professional Services</h4>
+      <ol>
+      <p><li> Reviewer of <em>Geophysical Research Letters</em>, <em>Seismological Research Letters</em>.</p>
+      <p><li> Organizer of the Caltech Seismo Lab Seminar, 2018-19.</p>
+      <p><li> Organizer of the Caltech Geology and Planetary Sciences Social.</p>
+      </ol>
+     <h4>Teaching and Mentoring</h4>
+      <ol>
+      <p><li> Teaching assistantships for Caltech Ge 161 Plate Tectonics (2020-21), Caltech Ge162 Seismology (2019-20), Caltech Ge 1 Earth and Environment (2018-19), Catech Ge 102 Introduction to Geophysics (2017-18), and USTC Mechanics (2014-15).</p>
+      <p><li> Lecturing for two weeks in Caltech Ge 102 Introduction to Geophysics (2017-18).</p>
+      <p><li> Mentoring Caltech undergraduate student Xiaotian (Jim) Zhang during 2019-20, and USTC graduate student Kai Yang during 2015-16.</p>
+      </ol>
+     <h4>Volunteer Field Activities</h4>
+      <ol>
+      <p><li> Deployment and retrieval of nodal seismometers for the San Bernardino Basin experiment, 2018-19.</p>
+      <p><li> Operation of Caltech Millikan Library shaker for active source experiment with the Pasadena Distributed Acoustic Sensing Array, 2018.</p>
+      <p><li> Deployment and retrieval of nodal seismometers for the San Gabriel Basin experiment, 2017-19.</p>
+      <p><li> Seismometer deployment for recording noise in Zhoushan Island, Zhejiang, China, 2014.</p>
+      </ol>
+  </div>
+
+  <!-- The Awards Section -->
+  <div class="w3-container w3-padding-32" id="award">
+    <h2>Awards</h2>
+    <p><li> 2016, Caltech GPS Graduate Fellowship</p>
+    <p><li> 2015, China National Scholarship for Graduate Students</p>
+    <p><li> 2011, USTC Outstanding Undergraduate Student Scholarship</p>
+    <p><li> 2009, USTC Outstanding Freshman Scholarship</p>
+  </div>  
+
+  <div class="w3-light-grey w3-center w3-padding-24">
+
+<!-- Default Statcounter code for My Personal Website 2021
+http://web.gps.caltech.edu/~zjia/ -->
+	<script type="text/javascript">
+		var sc_project=12571355; 
+		var sc_invisible=1; 
+		var sc_security="e972f0e0"; 
+	</script>
+	<script type="text/javascript"
+	src="https://www.statcounter.com/counter/counter.js" async></script>
+	<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
+	StatCounter" href="https://statcounter.com/" target="_blank"><img
+	class="statcounter" src="https://c.statcounter.com/12571355/0/e972f0e0/1/"
+	alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+  </div>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Accordion 
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Click on the link on page load to open the accordion 
+document.getElementById("myBtn").click();
+
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
