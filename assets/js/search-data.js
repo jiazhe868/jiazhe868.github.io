@@ -440,7 +440,10 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-our-study-deep-intra-slab-rupture-and-mechanism-transition-of-the-2024-mw-7-4-calama-earthquake-is-published-on-nature-communications-and-featured-by-jsg-geosciences-news",
+            },},{id: "news-our-study-dual-mechanism-transition-controls-rupture-development-of-large-deep-earthquakes-is-published-on-agu-advances-and-featured-by-eos-science-news-highlights",
+          title: 'Our study Dual Mechanism Transition Controls Rupture Development of Large Deep Earthquakes is...',
+          description: "",
+          section: "News",},{id: "news-our-study-deep-intra-slab-rupture-and-mechanism-transition-of-the-2024-mw-7-4-calama-earthquake-is-published-on-nature-communications-and-featured-by-jsg-geosciences-news",
           title: 'Our study Deep intra-slab rupture and mechanism transition of the 2024 Mw 7.4...',
           description: "",
           section: "News",},{id: "projects-project-1",
