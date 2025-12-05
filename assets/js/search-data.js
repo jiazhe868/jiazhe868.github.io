@@ -31,7 +31,7 @@ ninja.data = [{
             window.location.href = "/cv/";
           },
         },{id: "nav-teaching-amp-mentoring",
-          title: "Teaching &amp; Mentoring",
+          title: "teaching&amp;mentoring",
           description: "Overview of courses taught and students mentored.",
           section: "Navigation",
           handler: () => {
