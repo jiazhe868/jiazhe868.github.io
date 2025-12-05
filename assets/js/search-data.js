@@ -440,7 +440,10 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-started-a-new-journey-as-a-research-assistant-professor-at-utig-ut-austin",
+            },},{id: "news-our-study-the-complex-dynamics-of-the-2023-kahramanmaraş-turkey-mw-7-8-7-7-earthquake-doublet-is-published-in-science-issue-cover-and-has-been-featured-by-scripps-news-ucsd-today-kbps-news-etc",
+          title: 'Our study The complex dynamics of the 2023 Kahramanmaraş, Turkey, Mw 7.8-7.7 earthquake...',
+          description: "",
+          section: "News",},{id: "news-started-a-new-journey-as-a-research-assistant-professor-at-utig-ut-austin",
           title: 'Started a new journey as a Research Assistant Professor at UTIG (UT Austin)!...',
           description: "",
           section: "News",},{id: "news-our-study-dual-mechanism-transition-controls-rupture-development-of-large-deep-earthquakes-is-published-on-agu-advances-and-featured-by-eos-science-news-highlights",
