@@ -440,7 +440,10 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "projects-project-1",
+            },},{id: "news-our-study-deep-intra-slab-rupture-and-mechanism-transition-of-the-2024-mw-7-4-calama-earthquake-is-published-on-nature-communications-and-featured-by-jsg-geosciences-news",
+          title: 'Our study Deep intra-slab rupture and mechanism transition of the 2024 Mw 7.4...',
+          description: "",
+          section: "News",},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
           section: "Projects",handler: () => {
