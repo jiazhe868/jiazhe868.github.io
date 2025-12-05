@@ -2,15 +2,13 @@
 layout: about
 title: about
 permalink: /
-subtitle: AI Scientist & Research Assistant Professor @ UT Austin.
+subtitle: AI Scientist & Seismologist @ UT Austin.
 
 profile:
   align: right
   image: zhe_jia.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>123 10601 Exploration Way Building 196, UT Institute for Geophysics</p>
-    <p>Austin, TX 78758</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
