@@ -9,7 +9,7 @@ nav_order: 6
 
 ## Teaching
 
-### Lecturer
+#### Lecturer
 
 | Course | Year |
 | :--- | :--: |
@@ -19,7 +19,8 @@ nav_order: 6
 | **SeismoChat** (UCSD SIOG-239) | 2022--23 |
 | **Introduction to Geophysics** (Guest Lecturer, Caltech Ge-102) | 2017--18 |
 
-### Teaching Assistant
+
+#### Teaching Assistant
 
 | Course | Year |
 | :--- | :--: |
@@ -33,20 +34,20 @@ nav_order: 6
 
 ## Mentoring
 
-### Advisor
+#### Advisor
 
 * **Wangwang Gu**, Exchange Postdoc
 * **Junpeng Li**, PhD Student
 * **Kaiteng Huang**, Exchange PhD Student
 * **Anna Vu**, Undergraduate Researcher
 
-### Research Mentor
+#### Research Mentor
 
 * **Chao Song**, Postdoc
 * **Qipeng Bai**, PhD Student
 * **Jim Zhang**, Undergraduate Researcher
 
-### PhD Advisory Committees
+#### PhD Advisory Committees
 
 * McKenzie M Carlson
 * Sujith Swaminadhan
