@@ -640,3 +640,23 @@ jsonresume:
   - languages
   - interests
   - references
+
+# 1. Email 
+email: "zjia@ig.utexas.edu"
+
+# 2. Google Scholar
+google_scholar_id: aDY5pnkAAAAJ
+
+# 3. GitHub 
+github_username: jiazhe868
+
+# 4. ORCID ID
+orcid_id: 0000-0003-0652-2646
+
+# LinkedIn
+linkedin_username: zhe-jia-205b427b
+
+# cv
+cv_url: assets/pdf/CV_Zhe.pdf
+
+rss_icon: false
