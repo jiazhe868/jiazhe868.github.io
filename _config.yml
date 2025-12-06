@@ -260,8 +260,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Jia]
+  first_name: [Zhe]
 
   style: apa
   locale: en
@@ -280,7 +280,7 @@ scholar:
   details_dir: bibliography
   details_link: Details
   query: "@*"
-  group_by: year, month
+  group_by: year
   group_order: descending
   sort_by: year, month
   order: descending
