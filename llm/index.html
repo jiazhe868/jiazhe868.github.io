@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Language models · Zhe Jia</title>
+<meta name="description" content="Pretraining a 113M-parameter GPT from scratch, post-training it with SFT and GRPO-style reinforcement learning, and applying the recipe to Qwen3.5-9B on a 24-GPU cluster. Data, training, evaluation, and the failures along the way.">
+<meta name="author" content="Zhe Jia">
+<link rel="canonical" href="https://jiazhe868.github.io/llm/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zhe Jia">
+<meta property="og:title" content="Language models · Zhe Jia">
+<meta property="og:description" content="Pretraining a 113M-parameter GPT from scratch, post-training it with SFT and GRPO-style reinforcement learning, and applying the recipe to Qwen3.5-9B on a 24-GPU cluster. Data, training, evaluation, and the failures along the way.">
+<meta property="og:url" content="https://jiazhe868.github.io/llm/">
+<meta property="og:image" content="https://jiazhe868.github.io/static/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/static/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/static/css/site.css?v=20261117">
+<script>
+  (function () {
+    try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Zhe Jia, home"><svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true" focusable="false">
+<circle cx="16" cy="16" r="14.2" fill="var(--surface)" stroke="currentColor" stroke-width="1.8"/>
+<path d="M16 16 L16 1.8 A14.2 14.2 0 0 1 30.2 16 Z M16 16 L16 30.2 A14.2 14.2 0 0 1 1.8 16 Z" fill="var(--accent)" transform="rotate(-28 16 16)"/>
+<circle cx="16" cy="16" r="14.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</svg><span>Zhe Jia</span></a>
+    <div class="header-actions">
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="/llm/" aria-current="page">Language models</a>
+        <a href="/sensoformer/">Sensoformer</a>
+        <a href="/earthquakes/">Earthquakes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/teaching/">Teaching</a>
+        <a href="/cv/">CV</a>
+      </nav>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch between light and dark theme"><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-controls="site-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+<span class="label">Language models</span>    <h1>The LLM lifecycle, built from scratch</h1>
+<p class="lead">Three open repositories cover every stage of a language model: data collection, tokenizer, pretraining, supervised fine-tuning, reinforcement learning with verifiable rewards, tool use, and evaluation. The first two train and post-train a 113M-parameter GPT on two GPUs. The third applies the post-training recipe to Qwen3.5-9B on 24 A100 GPUs. Every number below was measured, and each write-up records the failures as well as the results.</p>    <ul class="pill-links">
+<li><a href="https://github.com/jiazhe868/nanogpt-seis"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>nanoGPT-Seis</a></li><li><a href="https://github.com/jiazhe868/nanogpt-seis-posttrain"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>nanoGPT-Seis-Posttrain</a></li><li><a href="https://github.com/jiazhe868/qwen-seis-posttrain"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>qwen-seis-posttrain</a></li><li><a href="https://huggingface.co/jiazhe868"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M8 14.2s1.5 2.3 4 2.3 4-2.3 4-2.3"/><path d="M9 9.5h.01"/><path d="M15 9.5h.01"/></svg>Models on Hugging Face</a></li>    </ul>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap with-toc">
+    <nav class="toc" aria-label="On this page">
+      <span class="label">On this page</span>
+      <ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#stage-1-pretraining">Stage 1 · Pretraining</a></li>
+<li><a href="#stage-2-post-training-at-113m">Stage 2 · Post-training at 113M</a></li>
+<li><a href="#stage-3-post-training-qwen35-9b">Stage 3 · Post-training Qwen3.5-9B</a></li>
+<li><a href="#lessons-across-the-three-projects">Lessons across the three projects</a></li>
+<li><a href="#code-and-models">Code and models</a></li>
+</ol>
+    </nav>
+    <article class="prose">
+      <h2 id="overview">Overview</h2>
+<p>I wanted to understand each stage of a modern language model by building it myself and measuring it. The domain is earthquake science. It gives a concrete test that is easy to score: can the model solve quantitative seismology problems from papers it has never seen?</p>
+<ol class="flow">
+<li><small>Data</small><b>Crawl and clean</b><span>533k documents, MinHash dedup</span></li>
+<li><small>Tokens</small><b>BPE tokenizer</b><span>byte-level, 16,384 tokens</span></li>
+<li><small>Pretrain</small><b>113M decoder</b><span>GQA, RoPE, 4096 context</span></li>
+<li><small>SFT</small><b>Fine-tuning</b><span>teacher-written solutions</span></li>
+<li><small>RL</small><b>GRPO-style RL</b><span>programmatic verifiers</span></li>
+<li><small>Tools</small><b>Executed equations</b><span>an interpreter computes</span></li>
+<li><small>Eval</small><b>Held-out tests</b><span>paired bootstrap CIs</span></li>
+<li><small>Scale</small><b>Qwen3.5-9B</b><span>verl, Megatron, vLLM</span></li>
+</ol>
+
+<div class="metric-row" style="--cols: 4">
+<div class="metric"><b>113M</b><span>parameters, pretrained from scratch on 822.7M tokens</span></div>
+<div class="metric"><b>6.5 h</b><span>pretraining time on two NVIDIA A30 GPUs</span></div>
+<div class="metric"><b>4.7% → 27.9%</b><span>held-out accuracy of the 113M model through post-training</span></div>
+<div class="metric"><b>62.0 → 70.1</b><span>Qwen3.5-9B on the hardest seismology test set after SFT and RL</span></div>
+</div>
+
+<h2 id="stage-1-pretraining">Stage 1 · Pretraining</h2>
+<p><a href="https://github.com/jiazhe868/nanogpt-seis">nanoGPT-Seis</a> pretrains a small GPT for earthquake science. The repository goes through each stage in order with code and measured numbers: crawling, cleaning, tokenization, the model, distributed training, inference, and a scaling-law sweep. The checkpoint is on <a href="https://huggingface.co/jiazhe868/nanogpt_seis">Hugging Face</a>.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/pretrain-workflow.webp" data-caption="The pretraining pipeline: six free data sources, crawling, cleaning and deduplication, a 16k BPE tokenizer, a 113M-parameter decoder, two-GPU training, and streaming inference."><img src="/assets/img/llm/pretrain-workflow.webp" alt="The pretraining pipeline: six free data sources, crawling, cleaning and deduplication, a 16k BPE tokenizer, a 113M-parameter decoder, two-GPU training, and streaming inference." loading="lazy" decoding="async" width="1800" height="590"></a>
+<figcaption>The pretraining pipeline: six free data sources, crawling, cleaning and deduplication, a 16k BPE tokenizer, a 113M-parameter decoder, two-GPU training, and streaming inference.</figcaption></figure>
+
+<h3 id="data">Data</h3>
+<p>The corpus combines earthquake-science text with general text. Open-access papers come from Crossref and Unpaywall (11 journals and a broad pool), together with arXiv and EarthArXiv preprints, Wikipedia pages about earthquakes, and the Earthquake Insights newsletter. Wikipedia and FineWeb-Edu add general prose. Every PDF is validated before text extraction, because many links labeled open access return small anti-bot pages.</p>
+<p>Cleaning normalizes the text and drops short, non-alphabetic, and non-English documents. Deduplication runs from the cheapest test to the most expensive: document id, exact hash, then MinHash with locality-sensitive hashing (128 permutations, word 5-grams, threshold 0.7). Documents are processed longest first, so the most complete copy of a paper survives. The final corpus has 533,248 documents, 485.7M words, and 822.7M training tokens, about 24% domain text and 76% general text.</p>
+<h3 id="tokenizer-and-model">Tokenizer and model</h3>
+<p>The tokenizer is a byte-level BPE with 16,384 tokens, trained on the training split only. A small vocabulary keeps the tied embedding matrix at about 11% of the parameters, and common domain terms such as <em>earthquake</em> and <em>subduction</em> become single tokens.</p>
+<p>The model is a Llama-style decoder with 113M parameters: 16 layers, width 768, grouped-query attention with 12 query heads and 4 key-value heads, rotary position embeddings, RMSNorm, SwiGLU, tied embeddings, and a 4096-token context. Grouped-query attention makes the KV cache three times smaller. Attention runs through PyTorch's fused FlashAttention kernel, and a tiled FlashAttention written from scratch in the repository matches it to about 1e‑15.</p>
+<div class="fig-row-wrap"><div class="fig-row" style="--cols: 2">
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/pretrain-architecture.webp" data-caption="The decoder: 16 pre-norm blocks with grouped-query attention, RoPE, and SwiGLU."><img src="/assets/img/llm/pretrain-architecture.webp" alt="The decoder: 16 pre-norm blocks with grouped-query attention, RoPE, and SwiGLU." loading="lazy" decoding="async" width="1800" height="1654"></a>
+<figcaption>The decoder: 16 pre-norm blocks with grouped-query attention, RoPE, and SwiGLU.</figcaption></figure>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/pretrain-embeddings.webp" data-caption="After pretraining, seismology terms and everyday words occupy separate regions of the embedding space."><img src="/assets/img/llm/pretrain-embeddings.webp" alt="After pretraining, seismology terms and everyday words occupy separate regions of the embedding space." loading="lazy" decoding="async" width="1800" height="1380"></a>
+<figcaption>After pretraining, seismology terms and everyday words occupy separate regions of the embedding space.</figcaption></figure>
+</div></div>
+
+<h3 id="training">Training</h3>
+<p>Training uses PyTorch DDP on two NVIDIA A30 GPUs (24 GB each), bf16, and <code>torch.compile</code>. Each step processes 393,216 tokens: 4 sequences of 4096 tokens per GPU, 12 accumulation steps, and 2 GPUs. AdamW (β = 0.9, 0.95; weight decay 0.1) warms up for 400 steps to a learning rate of 3e‑4 and follows a cosine schedule to 3e‑5. The run takes 8,000 steps, about 3.8 epochs, in 6.5 hours. The first loss was 9.85, close to the expected ln(16384) = 9.70, a quick check that the model and the loss are wired correctly.</p>
+<p>I measured memory with a short probe before the long run. Weights, gradients, and Adam state take 1.8 GB, and activations at 4 sequences per GPU raise the peak to 15.2 GB. A batch of 8 runs out of memory. With more gradient accumulation the same 393,216-token step fits on a 16 GB card (8.9 GB peak) or a 12 GB card (5.3 GB).</p>
+<h3 id="results">Results</h3>
+<p>Fluency is measured in bits per byte, which does not depend on the tokenizer. A first model trained only on papers wrote repetitive text outside the style of a paper. Adding general text lowered bits per byte on held-out Wikipedia and web text from 1.527 to 0.997, 35% lower, and raised it on earthquake papers from 0.78 to 0.95. The fluent mixed model is the right starting point for fine-tuning.</p>
+<p>A longer context also helped. With the data held fixed, training at 4096 tokens instead of 1024 lowered perplexity from 10.93 to 9.74, about 11%, for about 26% more compute per step. The model uses that context: loss on tokens at positions 2048 to 4096 is 25% lower than on the first 64 tokens of a window. At inference, a KV cache gives about 176 ms to the first token and a steady 83 tokens per second up to the full context, and greedy decoding with and without the cache gives identical output.</p>
+<div class="fig-row-wrap"><div class="fig-row" style="--cols: 2">
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/pretrain-bpb.webp" data-caption="Bits per byte for the domain-only model (v1) and the mixed model (v2). General text gets 35% cheaper to encode, and paper text 22% more expensive."><img src="/assets/img/llm/pretrain-bpb.webp" alt="Bits per byte for the domain-only model (v1) and the mixed model (v2). General text gets 35% cheaper to encode, and paper text 22% more expensive." loading="lazy" decoding="async" width="1800" height="1339"></a>
+<figcaption>Bits per byte for the domain-only model (v1) and the mixed model (v2). General text gets 35% cheaper to encode, and paper text 22% more expensive.</figcaption></figure>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/pretrain-context.webp" data-caption="Loss by position in the 4096-token window. Tokens late in the window are predicted 24% better than the first 64."><img src="/assets/img/llm/pretrain-context.webp" alt="Loss by position in the 4096-token window. Tokens late in the window are predicted 24% better than the first 64." loading="lazy" decoding="async" width="1800" height="1199"></a>
+<figcaption>Loss by position in the 4096-token window. Tokens late in the window are predicted 24% better than the first 64.</figcaption></figure>
+</div></div>
+
+<h3 id="scaling-laws">Scaling laws</h3>
+<p>To check whether 113M parameters suits the compute budget, I ran an IsoFLOP sweep: 25 runs over 7 model sizes (0.74M to 122M non-embedding parameters) and 5 compute budgets (6e15 to 5.4e17 FLOPs). All runs use Maximal Update Parametrization (muP), so one base learning rate transfers across widths and tuning does not confound the comparison. For each budget, a parabola fit to loss against log model size gives the compute-optimal size.</p>
+<p>The compute-optimal model size grows as C<sup>0.69</sup> and the data as C<sup>0.31</sup>. The size exponent is steeper than the Chinchilla value of about 0.5, so at this scale an undersized model costs more than an undertrained one. The 113M production run sits at 0.86 times the extrapolated compute-optimal size.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/pretrain-scaling.webp" data-caption="Left: validation loss against model size for five compute budgets, with the optimum circled. Right: compute-optimal size against compute, Nopt ∝ C0.69. The star marks the 113M run."><img src="/assets/img/llm/pretrain-scaling.webp" alt="Left: validation loss against model size for five compute budgets, with the optimum circled. Right: compute-optimal size against compute, Nopt ∝ C0.69. The star marks the 113M run." loading="lazy" decoding="async" width="1800" height="709"></a>
+<figcaption>Left: validation loss against model size for five compute budgets, with the optimum circled. Right: compute-optimal size against compute, N<sub>opt</sub> ∝ C<sup>0.69</sup>. The star marks the 113M run.</figcaption></figure>
+
+<ol class="lessons">
+<li><strong>Compare models with different tokenizers in bits per byte.</strong>Perplexity depends on the vocabulary. Bits per byte made the domain-only and mixed models comparable.</li>
+<li><strong>Store tokens independently of the context length.</strong>The 1024 versus 4096 comparison needed no re-tokenization, so it was cheap to run.</li>
+<li><strong>Probe memory before a long run.</strong>The fixed state was 1.8 GB and the measured peak was 15.2 GB. Estimates of activation memory were less reliable than a ten-minute probe.</li>
+<li><strong>Use muP for size sweeps.</strong>One base learning rate transferred to every width, which removed tuning as a confound in the scaling fit.</li>
+<li><strong>Check that the GPU is visible.</strong>A PyTorch build for a newer CUDA than the driver reports no GPU and silently trains on the CPU.</li>
+</ol>
+
+<h2 id="stage-2-post-training-at-113m">Stage 2 · Post-training at 113M</h2>
+<p><a href="https://github.com/jiazhe868/nanogpt-seis-posttrain">nanoGPT-Seis-Posttrain</a> turns the pretrained base into a model that answers quantitative seismology questions. Everything runs on the same two A30 GPUs, including a Qwen3.8-27B teacher served with vLLM in FP8. The main test set has 153 numerical questions from papers never used in fine-tuning. An answer counts as correct within 5%, each model gets 6 seeds × 4 samples, and comparisons use paired bootstrap confidence intervals. The weights are on <a href="https://huggingface.co/jiazhe868/nanogpt_seis_posttrain">Hugging Face</a>.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/post-workflow.webp" data-caption="The post-training phases with format compliance and held-out accuracy. The last box uses a majority vote over 8 samples. The others are single samples."><img src="/assets/img/llm/post-workflow.webp" alt="The post-training phases with format compliance and held-out accuracy. The last box uses a majority vote over 8 samples. The others are single samples." loading="lazy" decoding="async" width="1800" height="304"></a>
+<figcaption>The post-training phases with format compliance and held-out accuracy. The last box uses a majority vote over 8 samples. The others are single samples.</figcaption></figure>
+
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/post-stage-outputs.webp" data-caption="One question answered at each phase. The base model continues the paper. After SFT it finds the method and does not finish. After GRPO it states the answer. The executed-equation model writes the derivation as equations that an interpreter runs, and 8 of 8 samples agree."><img src="/assets/img/llm/post-stage-outputs.webp" alt="One question answered at each phase. The base model continues the paper. After SFT it finds the method and does not finish. After GRPO it states the answer. The executed-equation model writes the derivation as equations that an interpreter runs, and 8 of 8 samples agree." loading="lazy" decoding="async" width="1800" height="1242"></a>
+<figcaption>One question answered at each phase. The base model continues the paper. After SFT it finds the method and does not finish. After GRPO it states the answer. The executed-equation model writes the derivation as equations that an interpreter runs, and 8 of 8 samples agree.</figcaption></figure>
+
+<h3 id="sft-and-grpo">SFT and GRPO</h3>
+<p>Supervised fine-tuning uses 14,068 question-answer pairs. The teacher wrote 17,289 pairs. Filters for contamination, phantom citations, off-domain content, and malformed tags kept 4,667, and 2,549 rewrites, 4,034 pairs on fundamentals, and 4,409 pairs on historical earthquakes complete the set. Splits are made by source paper, and the test set is pinned by hash. After SFT, 71% of answers were well formed and 4.7% were correct.</p>
+<p>The RL stage is a GRPO-style method with programmatic verifier rewards for the numerical answer, key concepts, format, echoing the prompt, phantom citations, length, and termination. Each update uses 8 samples for each of 32 prompts, group-mean baselines scaled by one standard deviation pooled over the batch, and a KL penalty. Format compliance rose from 71% to 98% within 20 steps. Accuracy moved from 4.7% to 6.1%, and on the 92 questions outside the RL prompt pool the change was not statistically resolved (+0.8 points, 95% CI −0.5 to +2.1).</p>
+<h3 id="executed-equations">Executed equations</h3>
+<p>Arithmetic was the bottleneck. The model learned to call a calculator tool in 93% of answers, and accuracy stayed flat. I then trained the model to write the whole derivation as equations that a restricted interpreter executes, and the final answer is written from the interpreter's result. Equations in the notation of the papers the model was pretrained on, such as <code>M0 = 10^(1.5*Mw + 9.1) [N m]</code>, ran more often than Python (75% of programs against 58%) and gave 17.8% accuracy against 11.3%, with 29% less data. With 105k teacher-written solutions, each kept only if executing it reproduces the label, held-out accuracy reached 19.7%.</p>
+<h3 id="more-data-fresh-problems-and-voting">More data, fresh problems, and voting</h3>
+<p>Later rounds had the teacher write real-style problems from 40,000 unused corpus excerpts, with each label verified by execution or a blind re-solve. They also added 1.57B tokens of math and STEM mid-training and fine-tuned once on 279,929 rows, reaching 25.5%. GRPO on 2,082 problems held out of fine-tuning raised accuracy on 300 new problems by 2.9 points (95% CI +0.6 to +5.4), and on the 153 held-out questions the change was within noise. A majority vote over 8 executed answers gives the deployed model's 27.9%.</p>
+<div class="ladder">
+<div class="ladder-row"><div class="name">SFT<small>prose answers</small></div><div class="bar"><i style="width: 9.4%"></i></div><div class="val">4.7%</div></div>
+<div class="ladder-row"><div class="name">+ GRPO<small>format reward</small></div><div class="bar"><i style="width: 12.2%"></i></div><div class="val">6.1%</div></div>
+<div class="ladder-row"><div class="name">Executed equations<small>paper notation, 105k solutions</small></div><div class="bar"><i style="width: 39.4%"></i></div><div class="val">19.7%</div></div>
+<div class="ladder-row"><div class="name">+ GRPO on the corpus<small>problems from unused excerpts</small></div><div class="bar"><i style="width: 44.0%"></i></div><div class="val">22.0%</div></div>
+<div class="ladder-row"><div class="name">Real-style data<small>one-stage fine-tune, mid-trained base</small></div><div class="bar"><i style="width: 51.0%"></i></div><div class="val">25.5%</div></div>
+<div class="ladder-row"><div class="name">+ GRPO on fresh problems<small>held out of fine-tuning</small></div><div class="bar"><i style="width: 52.8%"></i></div><div class="val">26.4%</div></div>
+<div class="ladder-row is-best"><div class="name">+ vote@8<small>deployed model</small></div><div class="bar"><i style="width: 55.8%"></i></div><div class="val">27.9%</div></div>
+<div class="ladder-row is-ref"><div class="name">Qwen3.8-27B teacher<small>reference, blind, single answer</small></div><div class="bar"><i style="width: 99.4%"></i></div><div class="val">49.7%</div></div>
+<p class="foot">Held-out accuracy (correct within 5%) on 153 numerical questions from papers never used in fine-tuning.</p></div>
+
+<p>With one executed answer per question, scored within 1%, the 113M model gets 22.6% of the held-out set. Qwen3.5-0.8B gets 3.1%, Qwen3.5-2B 12.3%, Qwen3.5-4B 30.4%, and Qwen3.5-9B 44.4%. The 113M model is 10.4 points ahead of the 2B model (95% CI +4.1 to +16.7) and uses about 190 times less compute per answer than the 9B model.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/post-general-models.webp" data-caption="The 113M model against general Qwen models with one executed answer per question, and the share of key concepts named at equal answer length."><img src="/assets/img/llm/post-general-models.webp" alt="The 113M model against general Qwen models with one executed answer per question, and the share of key concepts named at equal answer length." loading="lazy" decoding="async" width="1800" height="742"></a>
+<figcaption>The 113M model against general Qwen models with one executed answer per question, and the share of key concepts named at equal answer length.</figcaption></figure>
+
+<h3 id="what-rl-transferred">What RL transferred</h3>
+<p>A transfer study explains why single GRPO steps were hard to resolve on held-out questions. On its own practice problems, GRPO raised accuracy from 48.8% to 85.4% in 75 steps. On other questions, the gain grew with similarity to the nearest trained problem: +27.2 points at similarity 0.5 and above, and close to zero below 0.2. Real held-out questions have a median similarity of 0.23 to 0.27 to the RL pools. Sampling shows the same pattern: pass@1 rose from 24.0% to 25.0% and pass@64 went from 64.7% to 62.1%, so RL sharpened skills the model already had.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/post-transfer.webp" data-caption="(a) Accuracy before and after GRPO on trained problems, other papers, and real held-out questions. (b) The gain grows with similarity to a trained question. (c, d) How program validity and log-probabilities changed."><img src="/assets/img/llm/post-transfer.webp" alt="(a) Accuracy before and after GRPO on trained problems, other papers, and real held-out questions. (b) The gain grows with similarity to a trained question. (c, d) How program validity and log-probabilities changed." loading="lazy" decoding="async" width="1800" height="1231"></a>
+<figcaption>(a) Accuracy before and after GRPO on trained problems, other papers, and real held-out questions. (b) The gain grows with similarity to a trained question. (c, d) How program validity and log-probabilities changed.</figcaption></figure>
+
+<h3 id="measurement-pitfalls">Measurement pitfalls</h3>
+<p>The repository's <a href="https://github.com/jiazhe868/nanogpt-seis-posttrain/blob/main/PITFALLS.md">PITFALLS.md</a> records 15 failures in detail, and almost all of them are measurement problems. Four examples:</p>
+<div class="fig-row-wrap fig--wide"><div class="fig-row" style="--cols: 2">
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/post-pitfall-leakage.webp" data-caption="**Leakage.** A pair-level split put every validation source paper in training. 39% of an apparent gain came from the leak."><img src="/assets/img/llm/post-pitfall-leakage.webp" alt="**Leakage.** A pair-level split put every validation source paper in training. 39% of an apparent gain came from the leak." loading="lazy" decoding="async" width="1800" height="605"></a>
+<figcaption><strong>Leakage.</strong> A pair-level split put every validation source paper in training. 39% of an apparent gain came from the leak.</figcaption></figure>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/post-pitfall-circular.webp" data-caption="**Circular evaluation.** A +590% reward headline was 73% format compliance. Held-out accuracy did not change significantly."><img src="/assets/img/llm/post-pitfall-circular.webp" alt="**Circular evaluation.** A +590% reward headline was 73% format compliance. Held-out accuracy did not change significantly." loading="lazy" decoding="async" width="1800" height="605"></a>
+<figcaption><strong>Circular evaluation.</strong> A +590% reward headline was 73% format compliance. Held-out accuracy did not change significantly.</figcaption></figure>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/post-pitfall-decoding.webp" data-caption="**Decoding.** Raising the repetition penalty from 1.05 to 1.2 doubled SFT accuracy and flipped the sign of the SFT-to-RL comparison."><img src="/assets/img/llm/post-pitfall-decoding.webp" alt="**Decoding.** Raising the repetition penalty from 1.05 to 1.2 doubled SFT accuracy and flipped the sign of the SFT-to-RL comparison." loading="lazy" decoding="async" width="1800" height="606"></a>
+<figcaption><strong>Decoding.</strong> Raising the repetition penalty from 1.05 to 1.2 doubled SFT accuracy and flipped the sign of the SFT-to-RL comparison.</figcaption></figure>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/llm/post-pitfall-metric.webp" data-caption="**Metric floor.** Under the first scoring rule, a blind spray of numbers beat the trained model. The fixed rule has a 5.9% floor and an 86.1% ceiling."><img src="/assets/img/llm/post-pitfall-metric.webp" alt="**Metric floor.** Under the first scoring rule, a blind spray of numbers beat the trained model. The fixed rule has a 5.9% floor and an 86.1% ceiling." loading="lazy" decoding="async" width="1800" height="605"></a>
+<figcaption><strong>Metric floor.</strong> Under the first scoring rule, a blind spray of numbers beat the trained model. The fixed rule has a 5.9% floor and an 86.1% ceiling.</figcaption></figure>
+</div></div>
+
+<h2 id="stage-3-post-training-qwen35-9b">Stage 3 · Post-training Qwen3.5-9B</h2>
+<p><a href="https://github.com/jiazhe868/qwen-seis-posttrain">qwen-seis-posttrain</a> applies the recipe to Qwen3.5-9B on a shared Slurm cluster of 8 nodes with 3 A100-40GB GPUs each and no NVLink. The stack is verl with the Megatron engine for training and vLLM for rollouts, laid out as TP1 × PP8 × DP3 with 24 vLLM replicas on the same GPUs. Qwen3.8-27B wrote the SFT solutions and checked labels, Gemma 4 26B-A4B served as the reward judge, and a second judge that never touched training scored the written reports.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-workflow.webp" data-caption="Qwen3.5-9B on D-Num-hard after SFT on 13,095 conversations and after 20 RL steps on a bank of 36,884 problems, with the mean answer length in tokens."><img src="/assets/img/llm/qwen-workflow.webp" alt="Qwen3.5-9B on D-Num-hard after SFT on 13,095 conversations and after 20 RL steps on a bank of 36,884 problems, with the mean answer length in tokens." loading="lazy" decoding="async" width="1800" height="405"></a>
+<figcaption>Qwen3.5-9B on D-Num-hard after SFT on 13,095 conversations and after 20 RL steps on a bank of 36,884 problems, with the mean answer length in tokens.</figcaption></figure>
+
+<h3 id="tests-first">Tests first</h3>
+<p>The test sets were frozen before any training data existed, with content hashes and canary strings, and the evaluation code cannot import the reward code. The domain sets are D-Num (300 numerical problems from 10 held-out families), D-Num-hard (160 multi-step problems), D-Fresh (60 problems written after the model's release), D-Code (150 tasks with hidden tests), and D-Report (100 reports judged pairwise against the base). General benchmarks are GPQA Diamond, MMLU-Pro, IFEval, LiveCodeBench, tool calling, and a 650-prompt refusal set. Every model, the base included, runs through one harness at temperature 1.0 with up to 32K output tokens.</p>
+<h3 id="data-and-rewards">Data and rewards</h3>
+<p>The RL bank started with 57,037 generated problems. Filters for quality, MinHash duplicates, contamination, label verification, and difficulty left 36,884 in four task types: numerical, code, reports, and general instructions. For verification, the teacher solved 20 problems from each template 4 times and a judge ruled, and 20 of 102 templates were rejected whole. Contamination checks combine 13-gram and MinHash overlap, embedding similarity confirmed by an LLM judge, and answer matching. They removed 3.3% of the RL bank and 2.3% of the SFT data.</p>
+<p>SFT used 13,095 conversations (44.1M tokens): verified teacher solutions, tool-use trajectories whose code passed hidden tests, judged reports, and replayed answers from the base model. Full-parameter training took 2 epochs, 206 steps, and 2.3 hours, and length bucketing cut padding from 33% to 1.9%. Rewards depend on the task: a solver-checked value within tolerance and with the right unit, the share of hidden unit tests passed in an Apptainer sandbox, a judged rubric score with a penalty for references that Crossref cannot verify, and programmatic checks of instruction constraints.</p>
+<h3 id="the-rl-run">The RL run</h3>
+<p>Each step samples 8 answers for each of 126 prompts (1,008 samples) with a 16K-token cap. The advantage is the reward minus its group mean, without division by the group's standard deviation, and answers cut off at the cap get zero advantage. The loss is a clipped PPO-style surrogate with asymmetric clipping (0.2 and 0.28) and no KL term. A truncated importance weight, min(π<sub>train</sub>/π<sub>rollout</sub>, 2), corrects for the numerical mismatch between the vLLM sampler and the Megatron trainer, and a monitor pauses the run when that mismatch grows. A step took about 4 minutes. Dev accuracy on numerical problems went from 92.0 to 97.3 at step 20 and down to 78.9 by step 40. The monitor stopped the run at step 56, and dev selection kept step 20.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-rl-steps.webp" data-caption="Answer length, training accuracy, and groups with no learning signal at each RL step, for three task types. The run improved for 20 steps and then collapsed. The cause is under investigation."><img src="/assets/img/llm/qwen-rl-steps.webp" alt="Answer length, training accuracy, and groups with no learning signal at each RL step, for three task types. The run improved for 20 steps and then collapsed. The cause is under investigation." loading="lazy" decoding="async" width="1800" height="554"></a>
+<figcaption>Answer length, training accuracy, and groups with no learning signal at each RL step, for three task types. The run improved for 20 steps and then collapsed. The cause is under investigation.</figcaption></figure>
+
+<h3 id="results_1">Results</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Test set</th><th class="num">Base</th><th class="num">SFT</th><th class="num">RL step 20</th></tr></thead>
+<tbody>
+<tr><td>D-Num (300 problems, avg@8)</td><td class="num"><strong>91.6</strong></td><td class="num">89.4</td><td class="num">89.2</td></tr>
+<tr><td>D-Num-hard (160)</td><td class="num">62.0</td><td class="num">68.1</td><td class="num"><strong>70.1</strong></td></tr>
+<tr><td>D-Fresh (60, written after release)</td><td class="num">70.6</td><td class="num">78.8</td><td class="num"><strong>83.3</strong></td></tr>
+<tr><td>D-Code (150, hidden tests)</td><td class="num">80.5</td><td class="num"><strong>86.3</strong></td><td class="num">85.2</td></tr>
+<tr><td>GPQA Diamond (198)</td><td class="num">56.6</td><td class="num">71.3</td><td class="num"><strong>74.2</strong></td></tr>
+<tr><td>LiveCodeBench, after 2025-01 (70)</td><td class="num">38.2</td><td class="num"><strong>52.5</strong></td><td class="num">50.0</td></tr>
+<tr><td>IFEval (377)</td><td class="num">93.1</td><td class="num">93.1</td><td class="num"><strong>93.9</strong></td></tr>
+<tr><td>Mean output tokens</td><td class="num">14,735</td><td class="num">9,517</td><td class="num"><strong>5,637</strong></td></tr>
+</tbody>
+</table></div>
+
+<p>SFT raised D-Num-hard by 6.1 points, D-Fresh by 8.1, D-Code by 5.8, and GPQA Diamond by 14.7, and it cut answer length by 35%. It also lowered D-Num by 2.2 points, outside the noise band measured over 10 base seeds. RL cut answer length by another 41%. At the full 32K budget its gains over SFT on D-Num-hard (+1.9, 95% CI −0.7 to +4.6) and D-Fresh (+4.6, CI −0.8 to +10.4) are inside the noise. At a 16K budget RL leads SFT by 10.2 points on D-Num-hard. The write-up concludes that this run made the model faster and did not make it more reliable. Refusals on prompts that should be refused fell from 56.0% to 45.7%, a regression that held under a broader refusal detector.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-results.webp" data-caption="Scores with 95% intervals for the base, SFT, and RL models on the domain sets and general benchmarks, and the mean answer length."><img src="/assets/img/llm/qwen-results.webp" alt="Scores with 95% intervals for the base, SFT, and RL models on the domain sets and general benchmarks, and the mean answer length." loading="lazy" decoding="async" width="1800" height="602"></a>
+<figcaption>Scores with 95% intervals for the base, SFT, and RL models on the domain sets and general benchmarks, and the mean answer length.</figcaption></figure>
+
+<h3 id="where-the-gains-came-from">Where the gains came from</h3>
+<p>On a strong base model, post-training first buys efficiency. Within an 8K-token budget, the base answers 13.4% of D-Num correctly, SFT 60.0%, and RL 74.6%. Counting outcomes shows the mechanism. On D-Num-hard, unfinished answers fell from 421 to 211 out of 1,280, and wrong final values rose from 15 to 161. Post-training mostly changed when the model stops thinking, and a model that stops earlier is wrong more often. The token budget therefore decides the ranking. RL leads SFT by 10.2 points at 16K and by 1.9 points (within noise) at 32K, and it trails by 6.4 points when cut-off answers are continued to 64K.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-samples.webp" data-caption="Outcomes on D-Num and D-Num-hard. Post-training turned unfinished answers into finished ones, and some of them into wrong values."><img src="/assets/img/llm/qwen-samples.webp" alt="Outcomes on D-Num and D-Num-hard. Post-training turned unfinished answers into finished ones, and some of them into wrong values." loading="lazy" decoding="async" width="1800" height="668"></a>
+<figcaption>Outcomes on D-Num and D-Num-hard. Post-training turned unfinished answers into finished ones, and some of them into wrong values.</figcaption></figure>
+
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-test-time.webp" data-caption="Accuracy against the token budget, and majority voting on D-Num."><img src="/assets/img/llm/qwen-test-time.webp" alt="Accuracy against the token budget, and majority voting on D-Num." loading="lazy" decoding="async" width="1800" height="574"></a>
+<figcaption>Accuracy against the token budget, and majority voting on D-Num.</figcaption></figure>
+
+<h3 id="judges-and-reward-design">Judges and reward design</h3>
+<p>The reward judge and the independent judge disagreed. On D-Report, Gemma gave SFT an 86.0% win rate against the base, and the evaluation-only judge gave 49.0%. At a pass mark of 70, 8 of Gemma's 108 passes held under the second judge. The SFT reports had been chosen with Gemma, which likely explains the gap. A judged reward needs a second judge that never trains.</p>
+<p>How the reward treats a cut-off answer decides where the gradient comes from. In a pilot with a soft length penalty, 29% of all groups got their gradient from the penalty alone, and a correct answer that finished at 23,500 tokens earned a lower advantage (−0.31) than an answer that never finished (0). The difficulty filter had also been run with the base model. Under the SFT policy, 87% of numerical and code groups were all correct in steps 1 to 20, so only 88 to 272 of 1,008 samples per step carried any signal. The redesigned run re-grades the bank with the SFT policy and scores a cut-off numerical answer as wrong.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-judges.webp" data-caption="Win rate against the base under the reward judge and the evaluation-only judge, and dev scores at steps 0, 20, and 40."><img src="/assets/img/llm/qwen-judges.webp" alt="Win rate against the base under the reward judge and the evaluation-only judge, and dev scores at steps 0, 20, and 40." loading="lazy" decoding="async" width="1800" height="718"></a>
+<figcaption>Win rate against the base under the reward judge and the evaluation-only judge, and dev scores at steps 0, 20, and 40.</figcaption></figure>
+
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-gradient.webp" data-caption="Share of groups with gradient under three rules for cut-off answers, split into real right-versus-wrong signal and penalty-only signal."><img src="/assets/img/llm/qwen-gradient.webp" alt="Share of groups with gradient under three rules for cut-off answers, split into real right-versus-wrong signal and penalty-only signal." loading="lazy" decoding="async" width="1800" height="686"></a>
+<figcaption>Share of groups with gradient under three rules for cut-off answers, split into real right-versus-wrong signal and penalty-only signal.</figcaption></figure>
+
+<h3 id="systems">Systems</h3>
+<p>With TP1, the last pipeline stage holds the output layer, the multi-token-prediction head, and its own copy of the embedding, 3.14B parameters in all. At the longest training row it needed 77.7 GiB on a 40 GiB GPU. Adam on the CPU, Transformer Engine's cross entropy, BF16 logits, and a single decoder layer on the first and last stages brought it to 35.6 GiB, checked against an FP32 reference to within 1e‑4 nats per token. The 8-node pre-flight peaked at 40,366 of 40,437 MiB.</p>
+<p>Several bugs were silent. verl passed an attention mask that marks the tokens to keep, and Megatron read it as the tokens to drop. Only the unfused A100 path at head dimension 256 applied the mask, so the bug does not appear on an H100. The log-probability gap between trainer and sampler was 1.80 nats per token before the fix and 3e‑4 after. Apptainer was missing on 7 of 8 nodes, so 79% of code rewards were zero until an alert on infrastructure errors caught it. Of the main job's 71.9 hours, 28.7 went to planned stages and 43.2 to incidents, waits, and holds. 21 of the 27 documented pitfalls were silent failures.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-memory.webp" data-caption="Memory of the last pipeline stage before (77.7 GiB) and after (35.6 GiB) the fixes, and the SFT memory trace under the 40 GiB limit."><img src="/assets/img/llm/qwen-memory.webp" alt="Memory of the last pipeline stage before (77.7 GiB) and after (35.6 GiB) the fixes, and the SFT memory trace under the 40 GiB limit." loading="lazy" decoding="async" width="1800" height="712"></a>
+<figcaption>Memory of the last pipeline stage before (77.7 GiB) and after (35.6 GiB) the fixes, and the SFT memory trace under the 40 GiB limit.</figcaption></figure>
+
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/llm/qwen-hours.webp" data-caption="Where the 71.9 hours of the main 8-node job went: planned stages in blue, incidents and waits in pink."><img src="/assets/img/llm/qwen-hours.webp" alt="Where the 71.9 hours of the main 8-node job went: planned stages in blue, incidents and waits in pink." loading="lazy" decoding="async" width="1800" height="341"></a>
+<figcaption>Where the 71.9 hours of the main 8-node job went: planned stages in blue, incidents and waits in pink.</figcaption></figure>
+
+<h2 id="lessons-across-the-three-projects">Lessons across the three projects</h2>
+<ol class="lessons">
+<li><strong>Freeze the tests before the training data exists.</strong>The 113M project found 61 of its 153 scored questions word for word in an RL prompt pool, under different ids. The 9B project froze its tests, gates, and selection rules first.</li>
+<li><strong>Report held-out metrics with paired confidence intervals.</strong>Most single GRPO steps on the 113M model looked positive and were inside the noise. Only the larger changes, such as executed equations, were resolved.</li>
+<li><strong>Pin the decoder before comparing checkpoints.</strong>At 113M, the repetition penalty moved accuracy by 7.7 points, 2.3 times the effect of training.</li>
+<li><strong>Write the cheating completion yourself.</strong>A padded answer with filler scored 0.139 above the genuine answer until the echo penalty was normalized by the prompt length.</li>
+<li><strong>Check where the gradient comes from.</strong>A length penalty alone supplied the gradient for 29% of groups, and a difficulty filter run with the wrong model left most groups without signal.</li>
+<li><strong>Keep one judge out of training.</strong>The reward judge rated the SFT reports at 86.0% and the held-out judge at 49.0%.</li>
+<li><strong>Alert on silent failures.</strong>A reward that read a missing field stayed at 0.0000 for 300 steps, and code rewards were zero on nodes without the sandbox.</li>
+<li><strong>Measure the heaviest stage at the longest sequence.</strong>The memory plan said 32.3 GB for the heaviest stage and the measurement said 77.7 GiB.</li>
+<li><strong>Move computation the model cannot do to a tool.</strong>Executed equations took the 113M model from 4.7% to 19.7% on held-out questions.</li>
+</ol>
+
+<h2 id="code-and-models">Code and models</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Project</th><th>Covers</th><th>Code</th><th>Weights</th></tr></thead>
+<tbody>
+<tr><td>nanoGPT-Seis</td><td>Data, tokenizer, pretraining, scaling laws, inference</td><td><a href="https://github.com/jiazhe868/nanogpt-seis">GitHub</a></td><td><a href="https://huggingface.co/jiazhe868/nanogpt_seis">nanogpt_seis</a></td></tr>
+<tr><td>nanoGPT-Seis-Posttrain</td><td>SFT, GRPO, executed equations, evaluation</td><td><a href="https://github.com/jiazhe868/nanogpt-seis-posttrain">GitHub</a></td><td><a href="https://huggingface.co/jiazhe868/nanogpt_seis_posttrain">nanogpt_seis_posttrain</a></td></tr>
+<tr><td>qwen-seis-posttrain</td><td>SFT and multi-task RL of Qwen3.5-9B with verl and Megatron</td><td><a href="https://github.com/jiazhe868/qwen-seis-posttrain">GitHub</a></td><td>Not yet released</td></tr>
+</tbody>
+</table></div>
+
+<p>Each repository has a detailed README in English and Chinese, and the two post-training repositories include a PITFALLS file with every failure, its evidence, and the fix.</p>
+    </article>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Zhe Jia · UT Austin · <a href="mailto:jiazhe868@gmail.com">jiazhe868@gmail.com</a></p>
+    <div class="foot-links">
+<a href="https://github.com/jiazhe868">GitHub</a><a href="https://scholar.google.com/citations?user=aDY5pnkAAAAJ&amp;hl=en">Google Scholar</a><a href="https://huggingface.co/jiazhe868">Hugging Face</a><a href="https://www.linkedin.com/in/zhe-jia-phd">LinkedIn</a><a href="https://orcid.org/0000-0003-0652-2646">ORCID</a><a href="mailto:jiazhe868@gmail.com">Email</a><a href="/assets/pdf/CV_Zhe.pdf">CV</a>    </div>
+    <p>Updated November 2026</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Figure viewer">
+  <button class="icon-btn close" type="button" aria-label="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <img alt="">
+  <p></p>
+</dialog>
+<script src="/static/js/site.js?v=20261117" defer></script>
+</body>
+</html>

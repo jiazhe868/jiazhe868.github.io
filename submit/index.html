@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SubMIT · Zhe Jia</title>
+<meta name="description" content="SubMIT describes a large earthquake as a few subevents and finds them by Bayesian sampling of global and regional seismograms. It is the method behind studies of the Fiji, Ridgecrest, South Sandwich Islands, Noto, and Calama earthquakes.">
+<meta name="author" content="Zhe Jia">
+<link rel="canonical" href="https://jiazhe868.github.io/submit/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zhe Jia">
+<meta property="og:title" content="SubMIT · Zhe Jia">
+<meta property="og:description" content="SubMIT describes a large earthquake as a few subevents and finds them by Bayesian sampling of global and regional seismograms. It is the method behind studies of the Fiji, Ridgecrest, South Sandwich Islands, Noto, and Calama earthquakes.">
+<meta property="og:url" content="https://jiazhe868.github.io/submit/">
+<meta property="og:image" content="https://jiazhe868.github.io/static/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/static/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/static/css/site.css?v=20261117">
+<script>
+  (function () {
+    try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Zhe Jia, home"><svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true" focusable="false">
+<circle cx="16" cy="16" r="14.2" fill="var(--surface)" stroke="currentColor" stroke-width="1.8"/>
+<path d="M16 16 L16 1.8 A14.2 14.2 0 0 1 30.2 16 Z M16 16 L16 30.2 A14.2 14.2 0 0 1 1.8 16 Z" fill="var(--accent)" transform="rotate(-28 16 16)"/>
+<circle cx="16" cy="16" r="14.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</svg><span>Zhe Jia</span></a>
+    <div class="header-actions">
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="/llm/">Language models</a>
+        <a href="/sensoformer/">Sensoformer</a>
+        <a href="/earthquakes/" aria-current="page">Earthquakes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/teaching/">Teaching</a>
+        <a href="/cv/">CV</a>
+      </nav>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch between light and dark theme"><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-controls="site-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+<span class="label">Earthquake source inversion</span>    <h1>SubMIT: subevent inversion for large earthquakes</h1>
+<p class="lead">SubMIT describes a large earthquake as a small number of subevents, each with its own time, location, depth, duration, and type of faulting. It fits global and regional seismograms with parallel Bayesian sampling, decides how many subevents the data support, and reports the uncertainty of every parameter. It is the method behind my studies of the Fiji, Ridgecrest, South Sandwich Islands, Noto, and Calama earthquakes.</p>    <ul class="pill-links">
+<li><a href="https://github.com/jiazhe868/SubMIT"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>Code on GitHub</a></li><li><a href="/earthquakes/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>Earthquake gallery</a></li>    </ul>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap with-toc">
+    <nav class="toc" aria-label="On this page">
+      <span class="label">On this page</span>
+      <ol>
+<li><a href="#why-subevents">Why subevents</a></li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#example-the-2024-calama-earthquake">Example: the 2024 Calama earthquake</a></li>
+<li><a href="#reliability-work-in-version-3">Reliability work in version 3</a></li>
+<li><a href="#studies-that-use-the-method">Studies that use the method</a></li>
+<li><a href="#running-it">Running it</a></li>
+</ol>
+    </nav>
+    <article class="prose">
+      <h2 id="why-subevents">Why subevents</h2>
+<p>A large earthquake is not a single instant of slip. The rupture spreads along the fault for seconds to minutes, and on the way it can change position, depth, and style of faulting. A single point source cannot reproduce the seismograms of such a rupture. A few subevents can. Each one is a short burst of slip with its own start time, location, depth, duration, size, and moment tensor.</p>
+<p>Subevents at different places produce a signature that stations can see. A station that the rupture runs toward records the bursts bunched together, and a station on the other side records them spread out. Fitting many stations at once recovers where and when each burst happened.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/submit/concept.webp" data-caption="The idea in three panels. A large earthquake is modeled as a few subevents (left). Each releases its moment as a smooth pulse (middle). Stations in different directions see the pulses compressed or stretched in time (right). The panels are a schematic built from an example run."><img src="/assets/img/submit/concept.webp" alt="The idea in three panels. A large earthquake is modeled as a few subevents (left). Each releases its moment as a smooth pulse (middle). Stations in different directions see the pulses compressed or stretched in time (right). The panels are a schematic built from an example run." loading="lazy" decoding="async" width="1800" height="617"></a>
+<figcaption>The idea in three panels. A large earthquake is modeled as a few subevents (left). Each releases its moment as a smooth pulse (middle). Stations in different directions see the pulses compressed or stretched in time (right). The panels are a schematic built from an example run.</figcaption></figure>
+
+<h2 id="how-it-works">How it works</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Part</th><th>What SubMIT does</th></tr></thead>
+<tbody>
+<tr><td>Parameters</td><td>Each subevent has a time, horizontal position, depth, and duration, which are sampled. Its five moment-tensor components are solved exactly for every sample by damped least squares, tied to the catalog moment tensor.</td></tr>
+<tr><td>Data</td><td>Teleseismic P and SH waves from 40° to 90° (0.005 to 0.2 Hz) and regional three-component waveforms up to about 750 km (0.02 to 0.15 Hz).</td></tr>
+<tr><td>Green's functions</td><td>Ray theory with a CRUST1.0 source crust for teleseismic waves, and frequency-wavenumber synthetics in a 1D CRUST1.0 model for regional waves, with exact timing for each subevent.</td></tr>
+<tr><td>Prior</td><td>A smoothed map of the first week of aftershocks, with background seismicity removed, plus causality and minimum-separation rules.</td></tr>
+<tr><td>Sampling</td><td>Up to 32 parallel Metropolis-Hastings chains with adaptive joint moves, relocation moves drawn from the prior, warm starts from the best model with one fewer subevent, and resampling within groups of chains.</td></tr>
+<tr><td>Model selection</td><td>The chosen number of subevents is the smallest one whose best misfit is within 5% of the best over all numbers tried. A bootstrap over independent groups of chains reports whether that choice is stable.</td></tr>
+<tr><td>Uncertainty</td><td>95% intervals for every parameter from the pooled posterior samples, with split R-hat for each parameter as a convergence check.</td></tr>
+</tbody>
+</table></div>
+
+<p>The pipeline runs in four steps with one command. It downloads and processes waveforms, computes Green's functions, screens bad stations, builds the prior, runs the inversions for one, two, three, and more subevents, selects the model, and writes the figures and a summary.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/submit/pipeline.webp" data-caption="From downloaded waveforms to final figures: data processing, preparation, Bayesian inversion with automatic model selection, and results."><img src="/assets/img/submit/pipeline.webp" alt="From downloaded waveforms to final figures: data processing, preparation, Bayesian inversion with automatic model selection, and results." loading="lazy" decoding="async" width="1800" height="696"></a>
+<figcaption>From downloaded waveforms to final figures: data processing, preparation, Bayesian inversion with automatic model selection, and results.</figcaption></figure>
+
+<h2 id="example-the-2024-calama-earthquake">Example: the 2024 Calama earthquake</h2>
+<p>The bundled Chile example is the magnitude 7.4 intermediate-depth earthquake beneath Calama, which I studied in <a href="/earthquakes/#calama2024">Nature Communications</a>. SubMIT selects four subevents within about 17 seconds. They stay within 15 km of the epicenter horizontally, and their depths step down from 126 km to 170 km, so the rupture grew mainly downward through the subducting slab. A five-subevent model, which the published study used, fits only 1.4% worse.</p>
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/submit/chile-subevents.webp" data-caption="Four subevents of the 2024 Calama earthquake: map with mechanisms and 95% uncertainty bars, moment-rate functions, and a depth section from 126 to 170 km."><img src="/assets/img/submit/chile-subevents.webp" alt="Four subevents of the 2024 Calama earthquake: map with mechanisms and 95% uncertainty bars, moment-rate functions, and a depth section from 126 to 170 km." loading="lazy" decoding="async" width="1800" height="1029"></a>
+<figcaption>Four subevents of the 2024 Calama earthquake: map with mechanisms and 95% uncertainty bars, moment-rate functions, and a depth section from 126 to 170 km.</figcaption></figure>
+
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/submit/model-selection.webp" data-caption="Choosing the number of subevents. Misfit relative to the best model against the number of subevents for the four examples. Stars mark the selected models, inside the 5% band."><img src="/assets/img/submit/model-selection.webp" alt="Choosing the number of subevents. Misfit relative to the best model against the number of subevents for the four examples. Stars mark the selected models, inside the 5% band." loading="lazy" decoding="async" width="1275" height="720"></a>
+<figcaption>Choosing the number of subevents. Misfit relative to the best model against the number of subevents for the four examples. Stars mark the selected models, inside the 5% band.</figcaption></figure>
+
+<figure class="fig fig--wide">
+<a class="frame zoom" href="/assets/img/submit/results-overview.webp" data-caption="Moment-rate functions of the four bundled examples, with each subevent in its own color."><img src="/assets/img/submit/results-overview.webp" alt="Moment-rate functions of the four bundled examples, with each subevent in its own color." loading="lazy" decoding="async" width="1800" height="464"></a>
+<figcaption>Moment-rate functions of the four bundled examples, with each subevent in its own color.</figcaption></figure>
+
+<p>The repository includes four examples with their input data: Calama, Chile (2024, Mw 7.4, 4 subevents), offshore Cape Mendocino, California (2024, Mw 7.0, 3 subevents), coastal Venezuela (2026, Mw 7.2, 6 subevents), and Kamchatka (2025, Mw 8.8, 7 subevents). The Venezuela and Kamchatka examples are being re-run with version 3, after the fixes described below changed their station processing and aftershock prior.</p>
+<h2 id="reliability-work-in-version-3">Reliability work in version 3</h2>
+<p>Version 3 (November 2026) is a rewrite. It followed bug reports from a group of users on the 2026 Mw 7.4 Colombia earthquake, clean-install tests on three earthquakes the code had never seen, and an independent code review that found eleven defects. The repository's <a href="https://github.com/jiazhe868/SubMIT/blob/main/PITFALLS.md">PITFALLS.md</a> documents each one with its evidence. In most cases the pipeline ran to the end and drew plausible figures. Two examples:</p>
+<ul>
+<li><strong>Horizontal components of unequal length were left unrotated.</strong> In the Venezuela example, 26 of 56 SH records were really north or east components. The poor fits were first explained as polarity flips and then as a smooth background rupture.</li>
+<li><strong>One lucky chain could decide the number of subevents.</strong> For one test earthquake, the selected model rested on a single chain, and the median chain was 16.6% worse. Version 3 reports how often independent groups of chains agree and warns when the choice is unstable.</li>
+</ul>
+<figure class="fig">
+<a class="frame zoom" href="/assets/img/submit/data-processing.webp" data-caption="Automatic quality control, from records as downloaded to data ready for the inversion: drift removal, alignment, rejection of wrong amplitudes and flipped channels, and balanced weighting of wave types."><img src="/assets/img/submit/data-processing.webp" alt="Automatic quality control, from records as downloaded to data ready for the inversion: drift removal, alignment, rejection of wrong amplitudes and flipped channels, and balanced weighting of wave types." loading="lazy" decoding="async" width="1240" height="1839"></a>
+<figcaption>Automatic quality control, from records as downloaded to data ready for the inversion: drift removal, alignment, rejection of wrong amplitudes and flipped channels, and balanced weighting of wave types.</figcaption></figure>
+
+<h2 id="studies-that-use-the-method">Studies that use the method</h2>
+<ul>
+<li><a href="/earthquakes/#fiji2018">2018 Fiji deep earthquake doublet</a>, <em>Earth and Planetary Science Letters</em> (2020)</li>
+<li><a href="/earthquakes/#ridgecrest2020">2019 Ridgecrest multi-fault models</a>, <em>Geophysical Research Letters</em> (2020)</li>
+<li><a href="/earthquakes/#sandwich2021">2021 South Sandwich Islands earthquake</a>, <em>Geophysical Research Letters</em> (2022)</li>
+<li><a href="/earthquakes/#noto2024">2024 Noto Peninsula earthquake and tsunami</a>, <em>Geophysical Research Letters</em> (2024)</li>
+<li><a href="/earthquakes/#calama2024">2024 Calama earthquake</a>, <em>Nature Communications</em> (2025)</li>
+</ul>
+<p>Related subevent analyses include the <a href="/earthquakes/#deepeq2025">40 large deep earthquakes</a> in <em>AGU Advances</em> (2025), which used a related grid-search subevent method, and the <a href="/earthquakes/#turkey2023">2023 Turkey doublet</a> in <em>Science</em> (2023).</p>
+<h2 id="running-it">Running it</h2>
+<p>SubMIT runs on Linux with MPI, C and Fortran compilers, SAC, Java, and a Python 3.12 environment. The core sampler is written in Fortran with MPI and the forward model in C. Each example can be reproduced from its frozen settings or rerun from scratch:</p>
+<pre><code class="language-bash">git clone https://github.com/jiazhe868/SubMIT &amp;&amp; cd SubMIT
+./submit check                    # are all dependencies installed?
+./submit build                    # compile the bundled Green's-function codes
+./submit example california       # reproduce the 2024 California M7.0 result (~10 min)
+./submit compare california       # check it against the published numbers
+
+./submit prepare /data/myevent &amp;&amp; ./submit run /data/myevent    # a new earthquake
+</code></pre>
+<p>If you use SubMIT, please cite Jia et al. (2020a, 2020b, 2022a) and Jia et al. (2025a). The full list of references and the seismic networks to acknowledge are in the README.</p>
+    </article>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Zhe Jia · UT Austin · <a href="mailto:jiazhe868@gmail.com">jiazhe868@gmail.com</a></p>
+    <div class="foot-links">
+<a href="https://github.com/jiazhe868">GitHub</a><a href="https://scholar.google.com/citations?user=aDY5pnkAAAAJ&amp;hl=en">Google Scholar</a><a href="https://huggingface.co/jiazhe868">Hugging Face</a><a href="https://www.linkedin.com/in/zhe-jia-phd">LinkedIn</a><a href="https://orcid.org/0000-0003-0652-2646">ORCID</a><a href="mailto:jiazhe868@gmail.com">Email</a><a href="/assets/pdf/CV_Zhe.pdf">CV</a>    </div>
+    <p>Updated November 2026</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Figure viewer">
+  <button class="icon-btn close" type="button" aria-label="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <img alt="">
+  <p></p>
+</dialog>
+<script src="/static/js/site.js?v=20261117" defer></script>
+</body>
+</html>

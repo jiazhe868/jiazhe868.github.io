@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earthquakes · Zhe Jia</title>
+<meta name="description" content="Plain-language summaries of Zhe Jia&#39;s earthquake studies, from the 2023 Turkey doublet and the 2021 South Sandwich Islands tsunami to deep earthquakes beneath Fiji, with figures from each paper.">
+<meta name="author" content="Zhe Jia">
+<link rel="canonical" href="https://jiazhe868.github.io/earthquakes/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zhe Jia">
+<meta property="og:title" content="Earthquakes · Zhe Jia">
+<meta property="og:description" content="Plain-language summaries of Zhe Jia&#39;s earthquake studies, from the 2023 Turkey doublet and the 2021 South Sandwich Islands tsunami to deep earthquakes beneath Fiji, with figures from each paper.">
+<meta property="og:url" content="https://jiazhe868.github.io/earthquakes/">
+<meta property="og:image" content="https://jiazhe868.github.io/static/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/static/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/static/css/site.css?v=20261117">
+<script>
+  (function () {
+    try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Zhe Jia, home"><svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true" focusable="false">
+<circle cx="16" cy="16" r="14.2" fill="var(--surface)" stroke="currentColor" stroke-width="1.8"/>
+<path d="M16 16 L16 1.8 A14.2 14.2 0 0 1 30.2 16 Z M16 16 L16 30.2 A14.2 14.2 0 0 1 1.8 16 Z" fill="var(--accent)" transform="rotate(-28 16 16)"/>
+<circle cx="16" cy="16" r="14.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</svg><span>Zhe Jia</span></a>
+    <div class="header-actions">
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="/llm/">Language models</a>
+        <a href="/sensoformer/">Sensoformer</a>
+        <a href="/earthquakes/" aria-current="page">Earthquakes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/teaching/">Teaching</a>
+        <a href="/cv/">CV</a>
+      </nav>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch between light and dark theme"><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-controls="site-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">Earthquake research</span>
+    <h1>How large earthquakes break</h1>
+    <p class="lead">Plain-language summaries of my earthquake studies, each with figures from the paper. Most of them resolve how a rupture unfolded: where it started, which way it ran, how deep it went, and why it stopped. Many use the subevent inversion in <a href="/submit/">SubMIT</a>.</p>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap">
+
+    <div class="theme-intro">
+      <div><h3>Large ruptures</h3><p>How big earthquakes break across several faults or segments, and what that means for shaking and tsunamis.</p></div>
+      <div><h3>Deep earthquakes</h3><p>Earthquakes 100 to 700 km down inside sinking plates, where heat and pressure make ordinary brittle failure difficult.</p></div>
+      <div><h3>Fault networks</h3><p>Sequences, swarms, and small earthquakes that reveal the hidden geometry of faults.</p></div>
+    </div>
+
+    <div class="filters" role="toolbar" aria-label="Filter studies by theme">
+      <button type="button" data-filter="all" aria-pressed="true">All studies</button>
+<button type="button" data-filter="large" aria-pressed="false">Large ruptures</button><button type="button" data-filter="deep" aria-pressed="false">Deep earthquakes</button><button type="button" data-filter="faults" aria-pressed="false">Fault networks</button><button type="button" data-filter="methods" aria-pressed="false">Methods and software</button><button type="button" data-filter="structure" aria-pressed="false">Earth structure</button>    </div>
+
+    <div class="studies" data-group>
+      <article class="study" id="turkey2023" data-themes="large">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/turkey2023-fig1.webp" data-caption="The two earthquakes broke at least six fault segments. Colors on the 3D fault model show how far each part of the fault slipped."><img src="/assets/img/quakes/turkey2023-fig1.webp" alt="The two earthquakes broke at least six fault segments. Colors on the 3D fault model show how far each part of the fault slipped." loading="lazy" decoding="async" width="1556" height="674"></a>
+          <figcaption>The two earthquakes broke at least six fault segments. Colors on the 3D fault model show how far each part of the fault slipped.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/turkey2023-fig2.webp" data-caption="The magnitude 7.8 ran northeast first and began tearing southwest about 10 seconds later."><img src="/assets/img/quakes/turkey2023-fig2.webp" alt="The magnitude 7.8 ran northeast first and began tearing southwest about 10 seconds later." loading="lazy" decoding="async" width="1586" height="619"></a><a class="zoom" href="/assets/img/quakes/turkey2023-fig4.webp" data-caption="Dynamic rupture simulations reproduce the delayed backward branch of the first earthquake and the supershear westward rupture of the second."><img src="/assets/img/quakes/turkey2023-fig4.webp" alt="Dynamic rupture simulations reproduce the delayed backward branch of the first earthquake and the supershear westward rupture of the second." loading="lazy" decoding="async" width="1574" height="910"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Feb 2023 · Mw 7.8 and 7.7</span><span class="chip">Science cover</span></div>
+          <h2>2023 Kahramanmaraş, Turkey, earthquake doublet</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Jin, Z., Marchandon, M., Ulrich, T., Gabriel, A.-A., Fan, W., Shearer, P. M., et al. (2023). The complex dynamics of the 2023 Kahramanmaraş, Turkey, Mw 7.8–7.7 earthquake doublet. <i>Science</i>.</p>
+          <div class="summary"><p>On 6 February 2023, two earthquakes of magnitude 7.8 and 7.7 struck southeastern Turkey nine hours apart and caused tens of thousands of deaths in Turkey and Syria. We combined satellite radar and GPS maps of ground motion with seismic records from stations near the faults and around the world. We built models of how the faults slipped and ran physics-based rupture simulations on supercomputers.</p>
+<p>The sequence broke at least six fault segments. The magnitude 7.8 began as a magnitude 6.8 rupture on a side fault, moved onto the East Anatolian Fault, and then ran about 300 km along it in both directions over about 90 seconds. The branch toward the southwest started about 10 seconds late. In the simulations, this backward branch became possible only after the rupture running northeast had unclamped and loaded the fault junction. The magnitude 7.7 broke a separate fault system to the north. Its westward rupture ran faster than shear waves, at about 4.5 km/s, and its eastward rupture at about 2.5 km/s.</p></div>
+<div class="finding"><b>Main finding</b>Ruptures jumped between faults and triggered each other across the fault network, growing far larger than the magnitude 7 earthquakes known from the region's history. Hazard models need to allow for such cascades.</div>          <div class="links">
+<a href="https://doi.org/10.1126/science.adi0685"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_Turkey_2023_Science.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="https://doi.org/10.5281/zenodo.8128342"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Data and models</a><a href="https://today.ucsd.edu/story/the-unexpected-physics-behind-turkeys-devastating-2023-earthquakes"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>UC San Diego Today</a></div>
+        </div>
+      </article>
+      <article class="study" id="calama2024" data-themes="deep large">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/calama2024-fig6.webp" data-caption="The rupture began in the cold core of the sinking plate and stepped down through five patches, crossing the 650 °C line into hotter rock."><img src="/assets/img/quakes/calama2024-fig6.webp" alt="The rupture began in the cold core of the sinking plate and stepped down through five patches, crossing the 650 °C line into hotter rock." loading="lazy" decoding="async" width="1015" height="928"></a>
+          <figcaption>The rupture began in the cold core of the sinking plate and stepped down through five patches, crossing the 650 °C line into hotter rock.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/calama2024-fig1.webp" data-caption="Earthquakes beneath northern Chile trace the Nazca plate diving under South America."><img src="/assets/img/quakes/calama2024-fig1.webp" alt="Earthquakes beneath northern Chile trace the Nazca plate diving under South America." loading="lazy" decoding="async" width="1453" height="690"></a><a class="zoom" href="/assets/img/quakes/calama2024-fig5.webp" data-caption="Three other large intermediate-depth earthquakes stayed in cold slab rock. The 2024 Calama rupture (top left) cut into much hotter rock."><img src="/assets/img/quakes/calama2024-fig5.webp" alt="Three other large intermediate-depth earthquakes stayed in cold slab rock. The 2024 Calama rupture (top left) cut into much hotter rock." loading="lazy" decoding="async" width="1492" height="981"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Jul 2024 · Mw 7.4 · 125–174 km deep</span></div>
+          <h2>2024 Calama, Chile, intermediate-depth earthquake</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Mao, W., Flores, M. C., Barra, S., Ruiz, S., Potin, B., Becker, T. W., et al. (2025). Deep intra-slab rupture and mechanism transition of the 2024 Mw 7.4 Calama earthquake. <i>Nature Communications</i>.</p>
+          <div class="summary"><p>On 19 July 2024, a magnitude 7.4 earthquake struck more than 120 km beneath Calama in northern Chile. It occurred inside the Nazca plate as the plate sinks under South America. At these pressures and temperatures rock tends to flow, and how such earthquakes happen is debated. They can be deadly: the 1939 Chillán earthquake of this type killed more people than any recorded megathrust earthquake in Chile.</p>
+<p>We used 47 regional strong-motion stations, 54 global stations, GPS, and relocated aftershocks, and compared the rupture with temperature models of the slab. The earthquake broke as five subevents in about 20 seconds. It moved down a steep fault from 125 to 174 km depth, about 78 km in total, at about 4.2 km/s. It began in the cold core of the slab and continued into rock hotter than 650 °C. The usual explanation for these earthquakes is water released by minerals such as serpentine, and that process stops near 650 °C. The deeper, hotter part released about 80% of the seismic moment.</p></div>
+<div class="finding"><b>Main finding</b>The rupture likely switched from dehydration embrittlement to thermal runaway, where frictional heating weakens the fault. Normally quiet, hot parts of slabs can host large ruptures, so estimates of the largest possible intermediate-depth earthquakes may need revision.</div>          <div class="links">
+<a href="https://doi.org/10.1038/s41467-025-63480-5"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_etal_Calama_2025_NatComms.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="https://www.jsg.utexas.edu/news/2025/09/researchers-discover-mechanism-that-can-ramp-up-magnitude-of-certain-earthquakes/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>JSG News</a><a href="/submit/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Method</a></div>
+        </div>
+      </article>
+      <article class="study" id="deepeq2025" data-themes="deep">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/deepeq2025-fig9.webp" data-caption="Small deep earthquakes stay inside the cold wedge of metastable olivine (MOW). The largest start there and break out into hotter rock, where shear melting keeps them going."><img src="/assets/img/quakes/deepeq2025-fig9.webp" alt="Small deep earthquakes stay inside the cold wedge of metastable olivine (MOW). The largest start there and break out into hotter rock, where shear melting keeps them going." loading="lazy" decoding="async" width="1091" height="885"></a>
+          <figcaption>Small deep earthquakes stay inside the cold wedge of metastable olivine (MOW). The largest start there and break out into hotter rock, where shear melting keeps them going.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/deepeq2025-fig1.webp" data-caption="The 40 deep earthquakes larger than magnitude 7 from 1990 to 2023."><img src="/assets/img/quakes/deepeq2025-fig1.webp" alt="The 40 deep earthquakes larger than magnitude 7 from 1990 to 2023." loading="lazy" decoding="async" width="1178" height="1097"></a><a class="zoom" href="/assets/img/quakes/deepeq2025-fig2.webp" data-caption="Subevent models of seven deep earthquakes beneath the Kuril, Japan, and Bonin regions, colored from early to late."><img src="/assets/img/quakes/deepeq2025-fig2.webp" alt="Subevent models of seven deep earthquakes beneath the Kuril, Japan, and Bonin regions, colored from early to late." loading="lazy" decoding="async" width="1101" height="1070"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">1990–2023 · 40 deep earthquakes above M 7</span><span class="chip">Eos Editors&#39; Highlight</span></div>
+          <h2>How large deep earthquakes grow</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Fan, W., Mao, W., Shearer, P. M., &amp; May, D. A. (2025). Dual mechanism transition controls rupture development of large deep earthquakes. <i>AGU Advances</i>.</p>
+          <div class="summary"><p>Earthquakes more than 500 km deep happen inside slabs of ocean plate sinking into the mantle. The pressure there prevents ordinary brittle failure. Deep earthquakes larger than magnitude 7 happen almost every year, and how they rupture has been debated for decades. We analyzed all 40 deep earthquakes larger than magnitude 7 from 1990 to 2023. For each one, we split the rupture into subevents with seismic waves recorded far away and measured how far, how fast, and in which direction it ran. We then compared the ruptures with temperature models of seven subduction zones.</p>
+<p>The models predict a narrow, cold wedge of metastable olivine inside each slab. This mineral can transform suddenly under pressure and start a rupture. Most large deep earthquakes appear to begin inside the wedge. In 25 of the 31 events with well-known slab geometry, the rupture likely extended beyond the wedge into hotter rock. These earthquakes released more moment over shorter ruptures, and their stress drops rose from about 10 MPa below magnitude 7.5 to about 100 MPa on average above it.</p></div>
+<div class="finding"><b>Main finding</b>Two mechanisms act in sequence. Transformational faulting starts the rupture, and thermal runaway lets it grow beyond the cold wedge. Together they explain large deep earthquakes from the coldest slab (Tonga) to the warmest (South America).</div>          <div class="links">
+<a href="https://doi.org/10.1029/2025AV001701"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_etal_DeepEQ_2025_AGUAdvances.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="https://eos.org/editor-highlights/shedding-light-on-the-mysteries-of-deep-earthquakes"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>Eos highlight</a></div>
+        </div>
+      </article>
+      <article class="study" id="sandwich2021" data-themes="large">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/sandwich2021-fig3a.webp" data-caption="The five subevents along the trench. The gray arrow marks the slow subevent E3, which moved about 180 km south."><img src="/assets/img/quakes/sandwich2021-fig3a.webp" alt="The five subevents along the trench. The gray arrow marks the slow subevent E3, which moved about 180 km south." loading="lazy" decoding="async" width="614" height="834"></a>
+          <figcaption>The five subevents along the trench. The gray arrow marks the slow subevent E3, which moved about 180 km south.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/sandwich2021-fig3d.webp" data-caption="Moment release over about 260 seconds. The broad slow rupture E3 sits between short, sharp ordinary ruptures."><img src="/assets/img/quakes/sandwich2021-fig3d.webp" alt="Moment release over about 260 seconds. The broad slow rupture E3 sits between short, sharp ordinary ruptures." loading="lazy" decoding="async" width="616" height="362"></a><a class="zoom" href="/assets/img/quakes/sandwich2021-fig1.webp" data-caption="The South Sandwich trench in the South Atlantic, with the foreshock, mainshock, aftershocks, and catalog solutions."><img src="/assets/img/quakes/sandwich2021-fig1.webp" alt="The South Sandwich trench in the South Atlantic, with the foreshock, mainshock, aftershocks, and catalog solutions." loading="lazy" decoding="async" width="1236" height="719"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Aug 2021 · Mw 8.2</span></div>
+          <h2>2021 South Sandwich Islands earthquake and tsunami</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Zhan, Z., &amp; Kanamori, H. (2022). The 2021 South Sandwich Island Mw 8.2 earthquake: A slow event sandwiched between regular ruptures. <i>Geophysical Research Letters</i>.</p>
+          <div class="summary"><p>On 12 August 2021, a large earthquake struck near the South Sandwich Islands in the South Atlantic. It was first reported as a magnitude 7.5 at 47 km depth. It then produced a tsunami that reached the Atlantic, Pacific, and Indian Oceans, with waves of about 20 cm on tide gauges more than 10,000 km away. A tsunami that large is expected only from a bigger and shallower earthquake.</p>
+<p>We compared magnitudes measured from short-period and long-period seismic waves, and modeled seismograms at periods up to about 500 seconds as a sequence of subevents. The earthquake was a five-part sequence, about 300 km long, that lasted about 260 seconds. Ordinary thrust ruptures at the start and end surrounded a slow subevent of magnitude 8.16 at about 14 km depth. This slow subevent moved south at about 1 km/s for about three minutes. It released more than 70% of the total moment and produced very little short-period shaking.</p></div>
+<div class="finding"><b>Main finding</b>A slow, tsunami-generating rupture was hidden between ordinary ruptures. It explains both the low early magnitudes and the large tsunami, and it shows why tsunami warning needs long-period seismic data.</div>          <div class="links">
+<a href="https://doi.org/10.1029/2021GL097104"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_SouthSandwich_2021.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/assets/pdf/Jia_et_al_SouthSandwich_2021_SI.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Supplement</a><a href="https://www.nationalgeographic.com/science/article/source-of-mysterious-global-tsunami-found-near-antarctica"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>National Geographic</a><a href="https://news.agu.org/press-release/hidden-magnitude-8-2-earthquake-source-of-mysterious-2021-global-tsunami/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>AGU press release</a><a href="/submit/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Method</a></div>
+        </div>
+      </article>
+      <article class="study" id="fiji2018" data-themes="deep">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/fiji2018-fig1a.webp" data-caption="Where the Pacific plate dives beneath Fiji, a magnitude 8.2 (orange star) and a magnitude 7.9 (green star) struck three weeks apart."><img src="/assets/img/quakes/fiji2018-fig1a.webp" alt="Where the Pacific plate dives beneath Fiji, a magnitude 8.2 (orange star) and a magnitude 7.9 (green star) struck three weeks apart." loading="lazy" decoding="async" width="789" height="737"></a>
+          <figcaption>Where the Pacific plate dives beneath Fiji, a magnitude 8.2 (orange star) and a magnitude 7.9 (green star) struck three weeks apart.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/fiji2018-fig3a.webp" data-caption="Subevent models of the two earthquakes. Most of the magnitude 8.2 rupture happened northeast of its start, in warmer rock."><img src="/assets/img/quakes/fiji2018-fig3a.webp" alt="Subevent models of the two earthquakes. Most of the magnitude 8.2 rupture happened northeast of its start, in warmer rock." loading="lazy" decoding="async" width="949" height="488"></a><a class="zoom" href="/assets/img/quakes/fiji2018-fig8.webp" data-caption="Seismic images and thermal models show two slabs. The magnitude 8.2 struck the warm edge of the Tonga slab and the 7.9 a relic slab above it."><img src="/assets/img/quakes/fiji2018-fig8.webp" alt="Seismic images and thermal models show two slabs. The magnitude 8.2 struck the warm edge of the Tonga slab and the 7.9 a relic slab above it." loading="lazy" decoding="async" width="1141" height="888"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Aug–Sep 2018 · Mw 8.2 and 7.9 · 556 and 655 km deep</span></div>
+          <h2>2018 Fiji deep earthquake doublet</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Shen, Z., Zhan, Z., Li, C., Peng, Z., &amp; Gurnis, M. (2020). The 2018 Fiji Mw 8.2 and 7.9 deep earthquakes: One doublet in two slabs. <i>Earth and Planetary Science Letters</i>.</p>
+          <div class="summary"><p>In 2018, two great deep earthquakes struck beneath Fiji: a magnitude 8.2 at about 556 km depth in August, and three weeks later a magnitude 7.9 about 250 km to the west at about 655 km depth. They were the first pair of magnitude 8 class deep earthquakes on record. The Fiji–Tonga slab is the coldest on Earth. It produces more than 75% of the world's cataloged deep earthquakes, and none of the ten largest of the past century.</p>
+<p>We measured the energy each earthquake radiated, determined the faulting from P-wave first motions, and split each rupture into subevents. We compared the results with aftershocks, seismic tomography, and thermal models. Both ruptures were compact, similar to the 1994 Bolivia deep earthquake in a much warmer slab. The magnitude 8.2 started near the cold core of the Tonga slab and did most of its rupturing in the warmer edge of the slab, at about 900 °C. The magnitude 7.9 occurred in a separate, warmer relic slab lying on top of the Tonga slab. The magnitude 8.2 had more than 400 aftershocks above magnitude 4 in 80 days, more than any deep earthquake before it.</p></div>
+<div class="finding"><b>Main finding</b>Local temperature inside the slab is the main control on how deep earthquakes rupture. The doublet also revealed two slabs interacting beneath Tonga.</div>          <div class="links">
+<a href="https://doi.org/10.1016/j.epsl.2019.115997"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_FijiDoublet_2020_EPSL.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/submit/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Method</a></div>
+        </div>
+      </article>
+      <article class="study" id="ridgecrest2020" data-themes="faults large">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/ridgecrest2020-fig4.webp" data-caption="The faults beneath Ridgecrest in 3D. The foreshock (blue) and mainshock (orange) slipped on neighboring patches, and the complex surface rupture becomes simpler at depth."><img src="/assets/img/quakes/ridgecrest2020-fig4.webp" alt="The faults beneath Ridgecrest in 3D. The foreshock (blue) and mainshock (orange) slipped on neighboring patches, and the complex surface rupture becomes simpler at depth." loading="lazy" decoding="async" width="1380" height="701"></a>
+          <figcaption>The faults beneath Ridgecrest in 3D. The foreshock (blue) and mainshock (orange) slipped on neighboring patches, and the complex surface rupture becomes simpler at depth.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/ridgecrest2020-fig3a.webp" data-caption="The magnitude 7.1 broke as five subevents, with up to about 6 m of slip on the main fault."><img src="/assets/img/quakes/ridgecrest2020-fig3a.webp" alt="The magnitude 7.1 broke as five subevents, with up to about 6 m of slip on the main fault." loading="lazy" decoding="async" width="781" height="774"></a><a class="zoom" href="/assets/img/quakes/ridgecrest2020-fig1.webp" data-caption="Aftershocks outline the crossing faults. Side panels show the 3D crustal model used to simulate the waves."><img src="/assets/img/quakes/ridgecrest2020-fig1.webp" alt="Aftershocks outline the crossing faults. Side panels show the 3D crustal model used to simulate the waves." loading="lazy" decoding="async" width="1343" height="751"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Jul 2019 · Mw 6.4 and 7.1</span></div>
+          <h2>2019 Ridgecrest, California: multi-fault rupture models</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Wang, X., &amp; Zhan, Z. (2020). Multifault models of the 2019 Ridgecrest sequence highlight complementary slip and fault junction instability. <i>Geophysical Research Letters</i>.</p>
+          <div class="summary"><p>In July 2019, a magnitude 6.4 foreshock struck near Ridgecrest, California, and a magnitude 7.1 mainshock followed 34 hours later. The ground broke along a tangle of crossing faults, and the surface cracks and the aftershocks gave different pictures of which faults slipped at depth. We first represented each earthquake as a few subevents and used them to set up multi-fault slip models. The models fit strong-motion and global seismic records, high-rate GPS, and satellite radar, with seismic waves simulated through a 3D model of the Southern California crust.</p>
+<p>The foreshock started where two perpendicular faults meet and ruptured both of them in about 10 seconds. Small earthquakes then migrated northwest toward a junction of three faults, where the mainshock began. The mainshock slipped up to about 6 m at depth. Four faults explain all the data, and the complex surface rupture merges into a simpler fault at depth.</p></div>
+<div class="finding"><b>Main finding</b>On the fault section they share, the foreshock and mainshock slipped on complementary patches. The mainshock started at a three-fault junction, which points to fault junctions as weak spots where large multi-fault earthquakes begin.</div>          <div class="links">
+<a href="https://doi.org/10.1029/2020GL089802"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_Ridgecrest_2020_GRL.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/submit/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Method</a></div>
+        </div>
+      </article>
+      <article class="study" id="ridgecrest2019" data-themes="faults">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/ridgecrest2019-fig2.webp" data-caption="Precisely located earthquakes, colored by depth, outline faults that cross at right angles. The section below shows at least 20 cross-cutting faults."><img src="/assets/img/quakes/ridgecrest2019-fig2.webp" alt="Precisely located earthquakes, colored by depth, outline faults that cross at right angles. The section below shows at least 20 cross-cutting faults." loading="lazy" decoding="async" width="1285" height="1471"></a>
+          <figcaption>Precisely located earthquakes, colored by depth, outline faults that cross at right angles. The section below shows at least 20 cross-cutting faults.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/ridgecrest2019-fig4.webp" data-caption="Subevent models: the magnitude 6.4 (red) broke in three bursts over about 12 seconds and the magnitude 7.1 (blue) in four bursts over about 22 seconds."><img src="/assets/img/quakes/ridgecrest2019-fig4.webp" alt="Subevent models: the magnitude 6.4 (red) broke in three bursts over about 12 seconds and the magnitude 7.1 (blue) in four bursts over about 22 seconds." loading="lazy" decoding="async" width="926" height="874"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Jul 2019 · Mw 6.4 and 7.1</span></div>
+          <h2>2019 Ridgecrest, California: a web of orthogonal faults</h2>
+          <p class="ref">Ross, Z. E., Idini, B., <strong>Jia, Z.</strong>, Stephenson, O. L., Zhong, M., Wang, X., Zhan, Z., Simons, M., et al. (2019). Hierarchical interlocked orthogonal faulting in the 2019 Ridgecrest earthquake sequence. <i>Science</i>.</p>
+          <div class="summary"><p>The Ridgecrest sequence ended a 20-year pause in large earthquakes in Southern California. This study combined a catalog of small earthquakes located to about 100 m, satellite radar maps of deformation and surface damage, GPS, and models of the two largest earthquakes as sequences of subevents. I carried out the subevent modeling with Xin Wang and Zhongwen Zhan.</p>
+<p>The sequence broke a previously unmapped web of faults that cross at right angles, from about 1 km to more than 10 km long, through the upper 10 km of the crust. At least 20 faults about 2 km or longer ruptured. The magnitude 6.4 broke at least three faults in about 12 seconds. The magnitude 7.1 ruptured for about 22 seconds in four bursts at about 2 km/s and stopped less than 5 km from the Garlock fault.</p></div>
+<div class="finding"><b>Main finding</b>Large earthquakes can break many interlocking faults at once, so hazard estimates that treat faults one at a time need rethinking.</div>          <div class="links">
+<a href="https://doi.org/10.1126/science.aaz0109"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Ross_Idini_Jia_et_al_Ridgecrest_2019_Science.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="https://www.nasa.gov/centers-and-facilities/jpl/caltech-nasa-find-web-of-ruptures-in-ridgecrest-quake"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>NASA JPL News</a></div>
+        </div>
+      </article>
+      <article class="study" id="noto2024" data-themes="large">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/noto2024-fig1a.webp" data-caption="Six subevents, darker for earlier. The rupture ran southwest first, then northeast offshore after a 20-second pause."><img src="/assets/img/quakes/noto2024-fig1a.webp" alt="Six subevents, darker for earlier. The rupture ran southwest first, then northeast offshore after a 20-second pause." loading="lazy" decoding="async" width="1739" height="1538"></a>
+          <figcaption>Six subevents, darker for earlier. The rupture ran southwest first, then northeast offshore after a 20-second pause.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/noto2024-fig3a.webp" data-caption="Simulated tsunami across the Sea of Japan 1 hour 12 minutes after the earthquake. Black squares mark the tide gauges used to check the model."><img src="/assets/img/quakes/noto2024-fig3a.webp" alt="Simulated tsunami across the Sea of Japan 1 hour 12 minutes after the earthquake. Black squares mark the tide gauges used to check the model." loading="lazy" decoding="async" width="1351" height="1219"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">Jan 2024 · Mw 7.5</span></div>
+          <h2>2024 Noto Peninsula, Japan, earthquake and tsunami</h2>
+          <p class="ref">Kutschera, F., <strong>Jia, Z.</strong>, Oryan, B., Wong, J. W. C., Fan, W., &amp; Gabriel, A.-A. (2024). The multi-segment complexity of the 2024 Mw 7.5 Noto Peninsula earthquake governs tsunami generation. <i>Geophysical Research Letters</i>.</p>
+          <div class="summary"><p>On 1 January 2024, a magnitude 7.5 earthquake struck Japan's Noto Peninsula and sent a tsunami across the Sea of Japan. Early models disagreed on how much of the fault slipped offshore, which is what drives a tsunami. A Bayesian multi-subevent inversion of seismic waves from 93 distant stations and nearby strong-motion stations described the earthquake as six subevents. The rupture first ran southwest along the peninsula for about 30 seconds. After a 20-second delay it restarted near its starting point and ran northeast, mostly offshore. This second episode released 40% of the moment and lifted the seafloor by up to about 3.8 m.</p>
+<p>The seafloor uplift from the subevent model then drove tsunami simulations. The simulated arrival times matched nine tide gauges to within 1 to 3.5 minutes, along with the direction and size of the first wave. The rapid USGS models could not explain the observed amplitudes and timing.</p></div>
+<div class="finding"><b>Main finding</b>The tsunami depends on the multi-segment rupture. A rapid subevent model reproduces it well enough to support tsunami early warning.</div>          <div class="links">
+<a href="https://doi.org/10.1029/2024GL109790"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Fabian_et_al_2024_Noto.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/submit/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>Method</a></div>
+        </div>
+      </article>
+      <article class="study" id="directivity2026" data-themes="faults methods">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/directivity2026-fig1.webp" data-caption="A small earthquake on the same path removes path effects from a larger one. Deconvolving energy envelopes (bottom) recovers the source history more cleanly than deconvolving waveforms."><img src="/assets/img/quakes/directivity2026-fig1.webp" alt="A small earthquake on the same path removes path effects from a larger one. Deconvolving energy envelopes (bottom) recovers the source history more cleanly than deconvolving waveforms." loading="lazy" decoding="async" width="1035" height="1349"></a>
+          <figcaption>A small earthquake on the same path removes path effects from a larger one. Deconvolving energy envelopes (bottom) recovers the source history more cleanly than deconvolving waveforms.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/directivity2026-fig7.webp" data-caption="Arrows show the rupture direction of each analyzed Ridgecrest earthquake (map from the preprint version)."><img src="/assets/img/quakes/directivity2026-fig7.webp" alt="Arrows show the rupture direction of each analyzed Ridgecrest earthquake (map from the preprint version)." loading="lazy" decoding="async" width="1167" height="1368"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">2019 Ridgecrest aftershocks · M 3.5–5.5</span></div>
+          <h2>Rupture directivity of small earthquakes</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Shearer, P. M., &amp; Fan, W. (2026). Rupture directivity from energy envelope deconvolution: Theory and application to 58 Ridgecrest M 3.5–5.5 earthquakes. <i>Journal of Geophysical Research: Solid Earth</i>.</p>
+          <div class="summary"><p>A rupture often runs mainly in one direction. Stations it runs toward record shorter pulses than stations behind it, similar to the Doppler effect. This is easy to measure for large earthquakes and hard for small ones, whose pulses are brief and smeared by scattering at the high frequencies needed to see them.</p>
+<p>The method compares each target earthquake with smaller nearby earthquakes whose waves travel the same paths. It deconvolves the smooth energy envelopes of the shear waves, which are stable at 5 to 10 Hz. We tested it on synthetic data and applied it to 58 magnitude 3.5 to 5.5 earthquakes of the 2019 Ridgecrest sequence. Their rupture directions outline an interlocking network of crossing faults that matches the aftershock locations, and the pattern appears to correlate with spatial differences in stress drop.</p></div>
+<div class="finding"><b>Main finding</b>Energy envelopes make it possible to measure rupture directivity for much smaller earthquakes, which gives many more events for mapping hidden fault structure.</div>          <div class="links">
+<a href="https://doi.org/10.1029/2024JB029683"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_etal_directivity_2024.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Preprint PDF</a><a href="https://github.com/jiazhe868/EGF-Directivity-Analysis"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>Code</a></div>
+        </div>
+      </article>
+      <article class="study" id="diffmt2022" data-themes="methods">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/diffmt2022-fig10.webp" data-caption="Each curve is one plausible fault orientation. The conventional method (top) leaves them scattered, and the differential method (bottom) brings them together."><img src="/assets/img/quakes/diffmt2022-fig10.webp" alt="Each curve is one plausible fault orientation. The conventional method (top) leaves them scattered, and the differential method (bottom) brings them together." loading="lazy" decoding="async" width="1150" height="830"></a>
+          <figcaption>Each curve is one plausible fault orientation. The conventional method (top) leaves them scattered, and the differential method (bottom) brings them together.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/diffmt2022-fig1.webp" data-caption="Two tests three years apart produced nearly identical seismograms at a station about 400 km away."><img src="/assets/img/quakes/diffmt2022-fig1.webp" alt="Two tests three years apart produced nearly identical seismograms at a station about 400 km away." loading="lazy" decoding="async" width="975" height="604"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">2013 and 2016 · Mw 4.3–4.4</span></div>
+          <h2>North Korea nuclear tests</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, Zhan, Z., &amp; Helmberger, D. (2022). Bayesian differential moment tensor inversion: Theory and application to the North Korea nuclear tests. <i>Geophysical Journal International</i>.</p>
+          <div class="summary"><p>Seismic waves can tell an underground explosion from an earthquake: an explosion pushes outward in all directions, and an earthquake slips along a fault. Estimating this source description, the moment tensor, normally needs an accurate model of how waves travel through the Earth, and errors in that model blur the answer. North Korea's tests were all set off within a few kilometers of each other, so their waves follow nearly the same paths to each station.</p>
+<p>We compared the tests in pairs. Dividing one test's wave amplitudes by another's at the same station cancels most of the shared path and site effects. We measured these ratios for P waves and surface waves and used Bayesian Markov chain Monte Carlo sampling to find all source models consistent with them. For the February 2013, January 2016, and September 2016 tests, the uncertainties shrank substantially. The explosive share came out at 88% to 92%, compared with 44% to 66% in the conventional solutions.</p></div>
+<div class="finding"><b>Main finding</b>Differential measurements between nearby events remove most of the path error and give much sharper source estimates, which helps identify explosions and compare their sizes.</div>          <div class="links">
+<a href="https://doi.org/10.1093/gji/ggac053"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_DiffMT_2021.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/assets/pdf/Jia_et_al_DiffMT_2021_SI.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Supplement</a></div>
+        </div>
+      </article>
+      <article class="study" id="labasin2021" data-themes="structure">
+        <figure class="study-media">
+          <a class="frame zoom" href="/assets/img/quakes/labasin2021-fig9.webp" data-caption="Shear-wave speed from 0.5 to 2.5 km depth: red is slow sediment and blue is fast rock. At 1.5 km a fast belt follows the Newport–Inglewood fault."><img src="/assets/img/quakes/labasin2021-fig9.webp" alt="Shear-wave speed from 0.5 to 2.5 km depth: red is slow sediment and blue is fast rock. At 1.5 km a fast belt follows the Newport–Inglewood fault." loading="lazy" decoding="async" width="1537" height="986"></a>
+          <figcaption>Shear-wave speed from 0.5 to 2.5 km depth: red is slow sediment and blue is fast rock. At 1.5 km a fast belt follows the Newport–Inglewood fault.</figcaption>
+          <div class="thumbs">
+<a class="zoom" href="/assets/img/quakes/labasin2021-fig1.webp" data-caption="21 permanent seismometers (triangles) and five dense industry arrays (orange) with more than 16,000 sensors."><img src="/assets/img/quakes/labasin2021-fig1.webp" alt="21 permanent seismometers (triangles) and five dense industry arrays (orange) with more than 16,000 sensors." loading="lazy" decoding="async" width="754" height="624"></a>          </div>
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">5 dense arrays · 16,000+ sensors</span><span class="chip">JGR cover</span></div>
+          <h2>Shallow structure of the Los Angeles Basin</h2>
+          <p class="ref"><strong>Jia, Z.</strong>, &amp; Clayton, R. W. (2021). Determination of near surface shear-wave velocities in the central Los Angeles Basin with dense arrays. <i>Journal of Geophysical Research: Solid Earth</i>.</p>
+          <div class="summary"><p>Los Angeles sits on a deep sedimentary basin whose soft near-surface layers amplify earthquake shaking, and the shaking can change by a factor of five within a kilometer. The basin has only about 20 permanent broadband seismometers. Between 2011 and 2018, oil companies deployed five temporary dense arrays with more than 16,000 sensors, and they recorded the Earth's constant background vibration while 21 regional stations were also recording.</p>
+<p>Cross-correlating this ambient noise between each regional station and each array sensor produces surface waves that appear to travel between them, and the way their speed changes with frequency reveals how stiff the ground is at each depth. From 353,006 correlations we built a 3D model of shear-wave velocity in the top 3 km of the central basin. It resolves finer structure than the community velocity models and fits the data better, and it shows a belt of fast rock along the Newport–Inglewood fault.</p></div>
+<div class="finding"><b>Main finding</b>Industry dense arrays and ambient noise give a high-resolution model of the shallow Los Angeles Basin, which can improve predictions of strong shaking.</div>          <div class="links">
+<a href="https://doi.org/10.1029/2020JB021369"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>Paper</a><a href="/assets/pdf/Jia_et_al_LABasin_2021_JGR.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>PDF</a><a href="/assets/pdf/SCECPoster_Zhe_2021.pdf"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Poster</a></div>
+        </div>
+      </article>
+    </div>
+
+    <section data-group style="margin-top: 64px">
+      <div class="section-head">
+        <span class="label">More studies</span>
+        <h2>Methods, collaborations, and earlier work</h2>
+      </div>
+      <div class="mini-grid">
+        <article class="mini" id="kamchatka2026" data-themes="large">
+          <div class="when">Jul 2025 · Mw 8.8</div>
+          <h3>2025 Kamchatka megathrust earthquake</h3>
+          <p>A magnitude 8.8 earthquake struck off Kamchatka about 50 km from the start of the 1952 magnitude 9.0 earthquake. Combining global seismic waves with tsunami records, PhD student Junpeng Li and I found that most slip was at moderate to greater depth in the southwest, where few earthquakes had occurred since 1952. Peak slip of about 14 m exceeds the roughly 6 m of slip deficit built up since 1952, so the 2025 earthquake released a deeper patch that likely stayed locked in 1952.</p>
+          <p class="ref">Li, J., &amp; <strong>Jia, Z.</strong> (2026), <i>Geophysical Research Letters</i>. <a href="https://doi.org/10.1029/2026GL121923">Paper</a></p>
+        </article>
+        <article class="mini" id="luding2026" data-themes="large methods">
+          <div class="when">Sep 2022 · Mw 6.6</div>
+          <h3>2022 Luding, China, earthquake</h3>
+          <p>Published depths of the deadliest earthquake in mainland China in eight years ranged from 2 to 18.4 km. Regional data favor about 6 km and teleseismic data about 17 km. Both fit a two-subevent model: a larger shallow subevent at about 6 km and, 7 seconds later, a smaller one at about 17 km.</p>
+          <p class="ref">Han, H., Ni, S., Meng, Q., Gu, W., <strong>Jia, Z.</strong>, et al. (2026), <i>Bulletin of the Seismological Society of America</i>. <a href="https://doi.org/10.1785/0120240278">Paper</a></p>
+        </article>
+        <article class="mini" id="izubonin2026" data-themes="deep structure">
+          <div class="when">3D geodynamic model</div>
+          <h3>Slab dynamics and earthquakes in Izu-Bonin-Mariana</h3>
+          <p>A 3D model of the sinking Pacific slab predicts temperature, stress, and energy dissipation. Earthquakes occur mostly in rock cooler than about 900 °C, where dissipation is high, and the modeled stresses explain megathrust, outer-rise, and deep bending earthquakes. Shallow events favor a weak slab and deep events a stronger slab with a 10 to 100 fold viscosity increase at 660 km.</p>
+          <p class="ref">Li, Y., Ribe, N. M., &amp; <strong>Jia, Z.</strong> (2026), <i>Earth and Planetary Science Letters</i>. <a href="https://doi.org/10.1016/j.epsl.2026.119878">Paper</a></p>
+        </article>
+        <article class="mini" id="tonga2021" data-themes="deep structure">
+<a class="mini-img zoom" href="/assets/img/quakes/tonga2021-fig2.webp" data-caption="The Tonga slab and a relic slab"><img src="/assets/img/quakes/tonga2021-fig2.webp" alt="Figure from the study: The Tonga slab and a relic slab" loading="lazy" decoding="async" width="1065" height="1363"></a>          <div class="when">Tonga–Fiji · mantle flow models</div>
+          <h3>The Tonga slab and a relic slab</h3>
+          <p>About two-thirds of the world's deep earthquakes occur in the Tonga slab. Mantle flow models that follow the region's plate history show a relic slab from the Vanuatu trench colliding with the Tonga slab, folding over it, and steepening it, which reproduces the stresses seen in deep earthquakes. The models imply that the 2018 Fiji doublet broke warm slab rock, which supports local slab temperature as the control on deep ruptures.</p>
+          <p class="ref">Liu, H., Gurnis, M., Leng, W., <strong>Jia, Z.</strong>, &amp; Zhan, Z. (2021), <i>Geophysical Research Letters</i>. <a href="https://doi.org/10.1029/2020GL091331">Paper</a> · <a href="/assets/pdf/Liu_et_al_Tonga_2021_GRL.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="hawthorne2019" data-themes="faults">
+<a class="mini-img zoom" href="/assets/img/quakes/hawthorne2019-fig7.webp" data-caption="2011 Hawthorne, Nevada, earthquake swarm"><img src="/assets/img/quakes/hawthorne2019-fig7.webp" alt="Figure from the study: 2011 Hawthorne, Nevada, earthquake swarm" loading="lazy" decoding="async" width="1124" height="677"></a>          <div class="when">Mar–Aug 2011 · Mw 3.9–4.8</div>
+          <h3>2011 Hawthorne, Nevada, earthquake swarm</h3>
+          <p>A swarm of 71 earthquakes shook an area near a Navy base and young volcanic features. Waveform modeling put the nine largest at 2 to 4 km depth with normal faulting, and satellite radar showed up to 10 cm of slip at 1 to 2 km depth. The radar implies about 15% more slip than the earthquakes released, and the swarm likely came from slow fault slip under regional stretching, with no sign of volcanic activity.</p>
+          <p class="ref">Zha, X., <strong>Jia, Z.</strong>, Dai, Z., &amp; Lu, Z. (2019), <i>Journal of Geodesy</i>. <a href="https://doi.org/10.1007/s00190-018-1212-5">Paper</a> · <a href="/assets/pdf/Zha_et_al_Hawthorne_2019_JG.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="dispersion2020" data-themes="methods structure">
+<a class="mini-img zoom" href="/assets/img/quakes/dispersion2020-fig4.webp" data-caption="Deep learning for ambient-noise dispersion curves"><img src="/assets/img/quakes/dispersion2020-fig4.webp" alt="Figure from the study: Deep learning for ambient-noise dispersion curves" loading="lazy" decoding="async" width="1579" height="607"></a>          <div class="when">U-Net · Long Beach dense array</div>
+          <h3>Deep learning for ambient-noise dispersion curves</h3>
+          <p>Dense arrays produce thousands of dispersion images that analysts trace by hand. A U-Net trained on 100,000 synthetic curves and fine-tuned on 1,000 hand-labeled examples labels every pixel as fundamental mode, first overtone, or noise. On 4,340 held-out examples its picks match a human analyst's, with median precision of at least 98% and recall of at least 94%, and it cuts human labor by about 80%.</p>
+          <p class="ref">Zhang, X., <strong>Jia, Z.</strong>, Ross, Z. E., &amp; Clayton, R. W. (2020), <i>IEEE Transactions on Geoscience and Remote Sensing</i>. <a href="https://doi.org/10.1109/TGRS.2020.2992043">Paper</a> · <a href="/assets/pdf/Zhang_Jia_et_al_MLDispersion_2020_IEEETGRS.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="depth2017" data-themes="methods">
+<a class="mini-img zoom" href="/assets/img/quakes/depth2017-fig6a.webp" data-caption="Earthquake depth from sparse stations"><img src="/assets/img/quakes/depth2017-fig6a.webp" alt="Figure from the study: Earthquake depth from sparse stations" loading="lazy" decoding="async" width="1337" height="581"></a>          <div class="when">2008 Wells, Nevada · Mw 6.0</div>
+          <h3>Earthquake depth from sparse stations</h3>
+          <p>With few nearby stations, waveform fits can match almost equally well over a wide range of depths. Rayleigh waves recorded 5 to 15 degrees away have spectral dips that shift with source depth. Fitting them together with local waveforms gave depths of 8 km for the 2008 Wells, Nevada, earthquake and 32 km for a 2013 outer-rise earthquake off Japan, both confirmed by teleseismic depth phases.</p>
+          <p class="ref"><strong>Jia, Z.</strong>, Ni, S., Chu, R., &amp; Zhan, Z. (2017), <i>Pure and Applied Geophysics</i>. <a href="https://doi.org/10.1007/s00024-016-1373-1">Paper</a> · <a href="/assets/pdf/Jia_et_al_JointDepth_2017_PAAG.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="gcapjoint2020" data-themes="methods">
+<a class="mini-img zoom" href="/assets/img/quakes/gcapjoint2020-fig1.webp" data-caption="gCAPjoint full moment tensor software"><img src="/assets/img/quakes/gcapjoint2020-fig1.webp" alt="Figure from the study: gCAPjoint full moment tensor software" loading="lazy" decoding="async" width="1157" height="638"></a>          <div class="when">Software · local and teleseismic waveforms</div>
+          <h3>gCAPjoint full moment tensor software</h3>
+          <p>About 10% of earthquakes in the Global CMT catalog have large non-double-couple components. gCAPjoint solves for the full moment tensor and depth by fitting local and teleseismic waveforms together. Tests on the 2017 Jiuzhaigou, 2010 Jiashian, and 2016 Pamir earthquakes gave a shallow 6 km source for Jiuzhaigou with a non-double-couple share of up to 25%.</p>
+          <p class="ref">Bai, Q., Ni, S., Chu, R., &amp; <strong>Jia, Z.</strong> (2020), <i>Seismological Research Letters</i>. <a href="https://doi.org/10.1785/0220200031">Paper</a> · <a href="/assets/pdf/Bai_et_al_gCAPjoint_2020_SRL.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="capjoint2015" data-themes="methods">
+<a class="mini-img zoom" href="/assets/img/quakes/capjoint2015-fig3.webp" data-caption="CAPjoint source inversion software"><img src="/assets/img/quakes/capjoint2015-fig3.webp" alt="Figure from the study: CAPjoint source inversion software" loading="lazy" decoding="async" width="770" height="830"></a>          <div class="when">Software · moderate earthquakes</div>
+          <h3>CAPjoint source inversion software</h3>
+          <p>CAPjoint fits local and teleseismic waveforms together to find the fault mechanism, depth, and magnitude of moderate earthquakes recorded by few stations. For the 2008 Wells, Nevada, earthquake it found Mw 6.06 at 8.6 km depth. Adding a single local station to four teleseismic stations brought the result close to the solution from many stations.</p>
+          <p class="ref">Chen, W., Ni, S., Kanamori, H., Wei, S., <strong>Jia, Z.</strong>, &amp; Zhu, L. (2015), <i>Seismological Research Letters</i>. <a href="https://doi.org/10.1785/0220140167">Paper</a> · <a href="/assets/pdf/Chen_et_al_CAPjoint_2015_SRL.pdf">PDF</a></p>
+        </article>
+        <article class="mini" id="lushan2013" data-themes="faults">
+<a class="mini-img zoom" href="/assets/img/quakes/lushan2013-fig5.webp" data-caption="Early aftershocks of the 2013 Lushan earthquake"><img src="/assets/img/quakes/lushan2013-fig5.webp" alt="Figure from the study: Early aftershocks of the 2013 Lushan earthquake" loading="lazy" decoding="async" width="733" height="704"></a>          <div class="when">Apr 2013 · Ms 7.0 · Sichuan</div>
+          <h3>Early aftershocks of the 2013 Lushan earthquake</h3>
+          <p>Catalogs miss many aftershocks in the first hours after a large earthquake. Detecting them in 24 hours of continuous data from one station 30 km away found 734 aftershocks, against 372 in the national catalog. The aftershock rate stayed nearly flat for about 8,000 seconds before the usual Omori decay began.</p>
+          <p class="ref"><strong>Jia, Z.</strong>, Chen, W., &amp; Chu, R. (2013), <i>Earthquake Science</i>. <a href="https://doi.org/10.1007/s11589-013-0050-z">Paper</a> · <a href="/assets/pdf/Jia_et_al_Lushan_2013_EqSci.pdf">PDF</a></p>
+        </article>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Zhe Jia · UT Austin · <a href="mailto:jiazhe868@gmail.com">jiazhe868@gmail.com</a></p>
+    <div class="foot-links">
+<a href="https://github.com/jiazhe868">GitHub</a><a href="https://scholar.google.com/citations?user=aDY5pnkAAAAJ&amp;hl=en">Google Scholar</a><a href="https://huggingface.co/jiazhe868">Hugging Face</a><a href="https://www.linkedin.com/in/zhe-jia-phd">LinkedIn</a><a href="https://orcid.org/0000-0003-0652-2646">ORCID</a><a href="mailto:jiazhe868@gmail.com">Email</a><a href="/assets/pdf/CV_Zhe.pdf">CV</a>    </div>
+    <p>Updated November 2026</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Figure viewer">
+  <button class="icon-btn close" type="button" aria-label="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <img alt="">
+  <p></p>
+</dialog>
+<script src="/static/js/site.js?v=20261117" defer></script>
+</body>
+</html>
