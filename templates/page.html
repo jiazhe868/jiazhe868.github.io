@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+
+{% macro toc_list(items) -%}
+<ol>
+{% for t in items %}<li><a href="#{{ t.id }}">{{ t.name | safe }}</a>{% if t.children and page.toc_depth == 3 %}{{ toc_list(t.children) }}{% endif %}</li>
+{% endfor %}
+</ol>
+{%- endmacro %}
+
+{% block main %}
+<section class="page-hero">
+  <div class="wrap">
+    {% if page.eyebrow %}<span class="label">{{ page.eyebrow }}</span>{% endif %}
+    <h1>{{ page.heading or page.title }}</h1>
+    {% if page.lead %}<p class="lead">{{ page.lead | mdi }}</p>{% endif %}
+    {% if page.links %}
+    <ul class="pill-links">
+      {% for l in page.links %}<li><a href="{{ l.url }}">{{ icon(l.icon or 'external') }}{{ l.label }}</a></li>{% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap{{ ' with-toc' if toc }}">
+    {% if toc %}
+    <nav class="toc" aria-label="On this page">
+      <span class="label">On this page</span>
+      {{ toc_list(toc) }}
+    </nav>
+    {% endif %}
+    <article class="prose">
+      {{ content }}
+    </article>
+  </div>
+</div>
+{% endblock %}

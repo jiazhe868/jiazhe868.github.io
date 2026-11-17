@@ -1,0 +1,73 @@
+{% from "icons.html" import icon, beachball %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% set full_title = page.head_title or ((page.title ~ " · " ~ site.name) if page.title else site.title) %}
+<title>{{ full_title }}</title>
+<meta name="description" content="{{ page.description or site.description }}">
+<meta name="author" content="{{ site.name }}">
+<link rel="canonical" href="{{ site.url }}{{ page.permalink }}">
+<meta property="og:type" content="{{ 'profile' if page.permalink == '/' else 'article' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ full_title }}">
+<meta property="og:description" content="{{ page.description or site.description }}">
+<meta property="og:url" content="{{ site.url }}{{ page.permalink }}">
+<meta property="og:image" content="{{ site.url }}{{ page.og_image or site.og_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f12" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/static/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/static/css/site.css?v={{ site.build_date.strftime('%Y%m%d') }}">
+<script>
+  (function () {
+    try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  })();
+</script>
+{% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="{{ site.name }}, home">{{ beachball(24) }}<span>{{ site.name }}</span></a>
+    <div class="header-actions">
+      <nav class="nav" id="site-nav" aria-label="Main">
+        {% for item in site.nav %}
+        <a href="{{ item.url }}"{% if page.permalink == item.url or (page.section and page.section == item.url) %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        {% endfor %}
+      </nav>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch between light and dark theme">{{ icon('sun', 'icon icon-sun') }}{{ icon('moon', 'icon icon-moon') }}</button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-controls="site-nav" aria-expanded="false">{{ icon('menu') }}</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{ site.name }} · {{ site.affiliation_short }} · <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <div class="foot-links">
+      {% for s in site.socials %}<a href="{{ s.url }}">{{ s.label }}</a>{% endfor %}
+    </div>
+    <p>Updated {{ site.build_date.strftime('%B %Y') }}</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" aria-label="Figure viewer">
+  <button class="icon-btn close" type="button" aria-label="Close">{{ icon('close') }}</button>
+  <img alt="">
+  <p></p>
+</dialog>
+<script src="/static/js/site.js?v={{ site.build_date.strftime('%Y%m%d') }}" defer></script>
+</body>
+</html>

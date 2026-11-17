@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}/",
+  "image": "{{ site.url }}{{ page.hero.photo }}",
+  "jobTitle": "{{ site.job_title }}",
+  "worksFor": {"@type": "Organization", "name": "{{ site.affiliation }}"},
+  "email": "mailto:{{ site.email }}",
+  "sameAs": [{% for s in site.socials if s.url.startswith('http') %}"{{ s.url }}"{{ "," if not loop.last }}{% endfor %}]
+}
+</script>
+{% endblock %}
+
+{% block main %}
+{% set h = page.hero %}
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="label">{{ h.eyebrow }}</span>
+        <h1>{{ site.name }}</h1>
+        <div class="lead">{{ h.lead | md }}</div>
+        <div class="btn-row">
+          {% for b in h.buttons %}<a class="btn{{ ' btn--ghost' if not loop.first }}" href="{{ b.url }}">{{ b.label }}{{ icon('arrow') }}</a>{% endfor %}
+        </div>
+        <ul class="pill-links">
+          {% for s in site.socials if s.hero is not false %}<li><a href="{{ s.url }}">{{ icon(s.icon) }}{{ s.label }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img src="{{ h.photo }}" alt="Portrait of {{ site.name }}" fetchpriority="high">
+        <figcaption>{{ h.photo_caption }}</figcaption>
+      </figure>
+    </div>
+
+    <figure class="trace" aria-label="{{ h.trace_caption | striptags }}">
+      {% set vb = data.trace.viewbox.split() %}
+      <svg class="draw" viewBox="{{ data.trace.viewbox }}" preserveAspectRatio="none" aria-hidden="true">
+        <line class="baseline" x1="0" y1="{{ (vb[3] | int) // 2 }}" x2="{{ vb[2] }}" y2="{{ (vb[3] | int) // 2 }}"/>
+        <path d="{{ data.trace.path }}"/>
+      </svg>
+      <figcaption><span>{{ h.trace_caption }}</span><span>{{ h.trace_note }}</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+{# ---------------- language models ---------------- #}
+{% set s = page.llm %}
+<section class="section" id="llm">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">{{ s.label }}</span>
+      <h2>{{ s.title }}</h2>
+      <p>{{ s.text | mdi }}</p>
+    </div>
+    <div class="stages">
+      {% for st in s.stages %}
+      <article class="stage">
+        <span class="label">{{ st.label }}</span>
+        <h3>{{ st.title }}</h3>
+        <div class="repo">{{ st.repo }}</div>
+        <a class="thumb zoom" href="{{ st.image }}" data-caption="{{ st.image_caption }}"><img src="{{ st.image }}" alt="{{ st.image_caption }}" loading="lazy"></a>
+        <p>{{ st.text | mdi }}</p>
+        <dl class="kv">
+          {% for k, v in st.facts %}<div><dt>{{ k }}</dt><dd>{{ v | mdi }}</dd></div>{% endfor %}
+        </dl>
+        <div class="links">
+          {% for l in st.links %}<a href="{{ l.url }}">{{ icon(l.icon or 'external') }}{{ l.label }}</a>{% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="section-foot"><a class="arrow-link" href="{{ s.more.url }}">{{ s.more.label }}{{ icon('arrow') }}</a></div>
+  </div>
+</section>
+
+{# ---------------- features ---------------- #}
+{% for f in page.features %}
+<section class="section{{ ' section--alt' if loop.index is odd }}" id="{{ f.id }}">
+  <div class="wrap">
+    <div class="feature{{ ' feature--flip' if f.flip }}">
+      <figure class="feature-media">
+        <a class="frame zoom" href="{{ f.image }}" data-caption="{{ f.image_caption }}" style="display:block"><img src="{{ f.image }}" alt="{{ f.image_caption }}" loading="lazy"></a>
+        <figcaption>{{ f.image_caption }}</figcaption>
+      </figure>
+      <div class="feature-body">
+        <span class="label">{{ f.label }}</span>
+        <h2>{{ f.title }}</h2>
+        <p>{{ f.text | mdi }}</p>
+        <ul>
+          {% for p in f.points %}<li>{{ p | mdi }}</li>{% endfor %}
+        </ul>
+        <div class="btn-row">
+          {% for l in f.links %}<a class="btn{{ ' btn--ghost' if not loop.first }}" href="{{ l.url }}">{{ l.label }}{{ icon('arrow') if loop.first else icon('external') }}</a>{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{# ---------------- earthquake gallery strip ---------------- #}
+{% set q = page.quakes %}
+<section class="section" id="earthquakes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">{{ q.label }}</span>
+      <h2>{{ q.title }}</h2>
+      <p>{{ q.text | mdi }}</p>
+    </div>
+    <div class="quake-grid">
+      {% for id in q.ids %}
+      {% for st in data.studies.entries if st.id == id %}
+      <a class="quake-card" href="/earthquakes/#{{ st.id }}">
+        <div class="img"><img src="{{ st.card_image or st.images[0].src }}" alt="{{ st.images[0].caption | striptags }}" loading="lazy"></div>
+        <div class="meta"><div class="when">{{ st.when }}</div><h3>{{ st.short or st.event }}</h3></div>
+      </a>
+      {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="section-foot"><a class="arrow-link" href="/earthquakes/">{{ q.more }}{{ icon('arrow') }}</a></div>
+  </div>
+</section>
+
+{# ---------------- about + news ---------------- #}
+<section class="section section--alt" id="about">
+  <div class="wrap two-col">
+    <div>
+      <div class="section-head" style="margin-bottom: 20px">
+        <span class="label">About</span>
+        <h2>{{ page.about_title }}</h2>
+      </div>
+      <div class="prose">{{ content }}</div>
+    </div>
+    <div id="news">
+      <div class="section-head" style="margin-bottom: 20px">
+        <span class="label">News</span>
+        <h2>Recent</h2>
+      </div>
+      <ul class="news">
+        {% for n in data.news[:page.news_limit] %}
+        <li><time datetime="{{ n.date }}">{{ n.date | date_fmt('%b %Y') }}</time><p>{{ n.text | mdi }}</p></li>
+        {% endfor %}
+      </ul>
+      {% if data.news | length > page.news_limit %}
+      <details class="news-more">
+        <summary>Earlier news</summary>
+        <ul class="news">
+          {% for n in data.news[page.news_limit:] %}
+          <li><time datetime="{{ n.date }}">{{ n.date | date_fmt('%b %Y') }}</time><p>{{ n.text | mdi }}</p></li>
+          {% endfor %}
+        </ul>
+      </details>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

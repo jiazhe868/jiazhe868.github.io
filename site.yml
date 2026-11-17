@@ -1,0 +1,59 @@
+# Site-wide settings. Page content lives in content/.
+name: Zhe Jia
+title: Zhe Jia · AI scientist and seismologist
+description: >-
+  Zhe Jia, Research Assistant Professor at the University of Texas at Austin.
+  Training machine learning models end to end, from pretraining and post-training
+  language models to sim-to-real models for sensor arrays, and studying how large
+  earthquakes rupture.
+url: https://jiazhe868.github.io
+email: jiazhe868@gmail.com
+job_title: Research Assistant Professor
+affiliation: The University of Texas at Austin, Institute for Geophysics
+affiliation_short: UT Austin
+og_image: /static/img/og.png
+
+nav:
+  - title: Language models
+    url: /llm/
+  - title: Sensoformer
+    url: /sensoformer/
+  - title: Earthquakes
+    url: /earthquakes/
+  - title: Publications
+    url: /publications/
+  - title: Teaching
+    url: /teaching/
+  - title: CV
+    url: /cv/
+
+socials:
+  - label: GitHub
+    url: https://github.com/jiazhe868
+    icon: github
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=aDY5pnkAAAAJ&hl=en
+    icon: scholar
+  - label: Hugging Face
+    url: https://huggingface.co/jiazhe868
+    icon: hf
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/zhe-jia-phd
+    icon: linkedin
+  - label: ORCID
+    url: https://orcid.org/0000-0003-0652-2646
+    icon: orcid
+    hero: false
+  - label: Email
+    url: mailto:jiazhe868@gmail.com
+    icon: mail
+  - label: CV
+    url: /assets/pdf/CV_Zhe.pdf
+    icon: file
+
+# Old URLs from the previous version of the site.
+redirects:
+  /projects/: /llm/
+  /news/: /#news
+  /about/: /
+  /repositories/: /llm/

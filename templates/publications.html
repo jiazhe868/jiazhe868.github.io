@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+
+{% block main %}
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">{{ page.eyebrow }}</span>
+    <h1>{{ page.heading or page.title }}</h1>
+    <p class="lead">{{ page.lead | mdi }}</p>
+    <ul class="pill-links">
+      {% for l in page.links %}<li><a href="{{ l.url }}">{{ icon(l.icon or 'external') }}{{ l.label }}</a></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap">
+    <div class="stats" style="margin-bottom: 40px">
+      {% for value, text in page.stats %}<div class="stat"><b>{{ value }}</b><span>{{ text | mdi }}</span></div>{% endfor %}
+    </div>
+
+    <div class="pub-tools">
+      <input class="pub-search" type="search" placeholder="Search titles, authors, venues" aria-label="Search publications">
+      <span class="pub-count muted mono" style="font-size: 13px">{{ data.publications | length }} papers</span>
+    </div>
+
+    {% for year, group in data.publications | groupby('year') | reverse %}
+    <section class="pub-year">
+      <h2>{{ year }}</h2>
+      <ol class="pub-list">
+        {% for p in group %}
+        <li class="pub">
+          <div class="pub-title">{% if p.doi %}<a href="https://doi.org/{{ p.doi }}">{{ p.title }}</a>{% elif p.url %}<a href="{{ p.url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</div>
+          <div class="pub-authors">{{ p.authors | mdi }}</div>
+          <div class="pub-venue"><i>{{ p.venue }}</i>{% if p.details %}, {{ p.details }}{% endif %}</div>
+          <div class="pub-meta">
+            {% for b in p.badges or [] %}<span class="chip chip--accent">{{ b }}</span>{% endfor %}
+            {% if p.pdf %}<a href="{{ p.pdf }}">{{ icon('file') }}PDF</a>{% endif %}
+            {% if p.doi %}<a href="https://doi.org/{{ p.doi }}">{{ icon('external') }}DOI</a>{% endif %}
+            {% if p.url and p.doi %}<a href="{{ p.url }}">{{ icon('external') }}Preprint</a>{% endif %}
+            {% if p.code %}<a href="{{ p.code }}">{{ icon('code') }}Code</a>{% endif %}
+            {% if p.story %}<a href="{{ p.story }}">{{ icon('paper') }}Plain-language summary</a>{% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endfor %}
+
+    {% if content %}<div class="prose" style="margin-top: 40px">{{ content }}</div>{% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{# Macros available inside Markdown pages as m.<name>(...). Each returns a raw
+   HTML block surrounded by blank lines so Markdown leaves it alone. #}
+
+{% macro fig(src, caption='', alt='', wide=False, credit='', full=None) -%}
+
+<figure class="fig{{ ' fig--wide' if wide }}">
+<a class="frame zoom" href="{{ full or src }}" data-caption="{{ caption | striptags }}"><img src="{{ src }}" alt="{{ alt or (caption | striptags) }}" loading="lazy" decoding="async"></a>
+{% if caption or credit %}<figcaption>{{ caption | mdi }}{% if credit %} <span class="credit">{{ credit | mdi }}</span>{% endif %}</figcaption>{% endif %}
+</figure>
+
+{%- endmacro %}
+
+{% macro figrow(items, cols=2, wide=False) -%}
+
+<div class="fig-row-wrap{{ ' fig--wide' if wide }}"><div class="fig-row" style="--cols: {{ cols }}">
+{% for it in items %}
+<figure class="fig">
+<a class="frame zoom" href="{{ it.full or it.src }}" data-caption="{{ (it.caption or '') | striptags }}"><img src="{{ it.src }}" alt="{{ it.alt or ((it.caption or '') | striptags) }}" loading="lazy" decoding="async"></a>
+{% if it.caption %}<figcaption>{{ it.caption | mdi }}</figcaption>{% endif %}
+</figure>
+{% endfor %}
+</div></div>
+
+{%- endmacro %}
+
+{% macro metrics(items, cols=3) -%}
+
+<div class="metric-row" style="--cols: {{ cols }}">
+{% for value, text in items %}<div class="metric"><b>{{ value }}</b><span>{{ text | mdi }}</span></div>
+{% endfor %}
+</div>
+
+{%- endmacro %}
+
+{% macro note(text, label='Note') -%}
+
+<div class="note"><span class="label">{{ label }}</span>{{ text | md }}</div>
+
+{%- endmacro %}
+
+{% macro lessons(items) -%}
+
+<ol class="lessons">
+{% for title, body in items %}<li><strong>{{ title | mdi }}</strong>{{ body | mdi }}</li>
+{% endfor %}
+</ol>
+
+{%- endmacro %}
+
+{% macro flow(items) -%}
+
+<ol class="flow">
+{% for step in items %}<li>{% if step.tag %}<small>{{ step.tag }}</small>{% endif %}<b>{{ step.title }}</b><span>{{ step.text | mdi }}</span></li>
+{% endfor %}
+</ol>
+
+{%- endmacro %}
+
+{% macro ladder(rows, max=100, unit='%', foot='') -%}
+
+<div class="ladder">
+{% for row in rows %}{% set name, sub, value = row[0], row[1], row[2] %}<div class="ladder-row{{ ' is-' ~ row[3] if row | length > 3 }}"><div class="name">{{ name }}{% if sub %}<small>{{ sub }}</small>{% endif %}</div><div class="bar"><i style="width: {{ (value / max * 100) | round(1) }}%"></i></div><div class="val">{{ value }}{{ unit }}</div></div>
+{% endfor %}
+{% if foot %}<p class="foot">{{ foot | mdi }}</p>{% endif %}
+</div>
+
+{%- endmacro %}
+
+{% macro table(head, rows, num_cols=[]) -%}
+
+<div class="table-wrap"><table>
+<thead><tr>{% for h in head %}<th{% if loop.index0 in num_cols %} class="num"{% endif %}>{{ h }}</th>{% endfor %}</tr></thead>
+<tbody>
+{% for r in rows %}<tr>{% for c in r %}<td{% if loop.index0 in num_cols %} class="num"{% endif %}>{{ c | string | mdi }}</td>{% endfor %}</tr>
+{% endfor %}
+</tbody>
+</table></div>
+
+{%- endmacro %}

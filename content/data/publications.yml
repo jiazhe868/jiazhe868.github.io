@@ -1,0 +1,207 @@
+# Publications, any order (the page groups them by year, newest first).
+# authors: Markdown; **Jia, Z.** is bolded; * marks a student or postdoc I mentored.
+# story: link to the plain-language summary in the earthquake gallery.
+
+- title: "The 2025 Mw 8.8 Kamchatka megathrust: A rapid recurrence with complex heterogeneous rupture"
+  authors: "Li, J.\\*, & **Jia, Z.**"
+  venue: Geophysical Research Letters
+  details: "53(9), e2026GL121923"
+  year: 2026
+  doi: 10.1029/2026GL121923
+  story: /earthquakes/#kamchatka2026
+
+- title: "Sensoformer: Robust sim-to-real inference on variable-geometry sensor sets via physics-structured randomization"
+  authors: "**Jia, Z.**, Zhang, X.\\*, & Li, J.\\*"
+  venue: arXiv preprint
+  details: "arXiv:2601.06320"
+  year: 2026
+  url: https://arxiv.org/abs/2601.06320
+  code: https://github.com/jiazhe868/Sensoformer
+  story: /sensoformer/
+
+- title: "Large-scale slab dynamics as drivers of seismicity: Modeling earthquakes in the Izu-Bonin-Mariana subduction zones"
+  authors: "Li, Y., Ribe, N. M., & **Jia, Z.**"
+  venue: Earth and Planetary Science Letters
+  details: "679, 119878"
+  year: 2026
+  doi: 10.1016/j.epsl.2026.119878
+  story: /earthquakes/#izubonin2026
+
+- title: "Rupture directivity from energy envelope deconvolution: Theory and application to 58 Ridgecrest M 3.5–5.5 earthquakes"
+  authors: "**Jia, Z.**, Shearer, P. M., & Fan, W."
+  venue: "Journal of Geophysical Research: Solid Earth"
+  details: "131(1)"
+  year: 2026
+  doi: 10.1029/2024JB029683
+  pdf: /assets/pdf/Jia_etal_directivity_2024.pdf
+  code: https://github.com/jiazhe868/EGF-Directivity-Analysis
+  story: /earthquakes/#directivity2026
+
+- title: "Complex double-event rupture of the 2022 Mw 6.6 Luding earthquake"
+  authors: "Han, H., Ni, S., Meng, Q., Gu, W.\\*, **Jia, Z.**, Zhang, B., Zhang, H., Zhou, Y., & Sheng, M."
+  venue: Bulletin of the Seismological Society of America
+  details: "116(1), 272–290"
+  year: 2026
+  doi: 10.1785/0120240278
+  story: /earthquakes/#luding2026
+
+- title: "Deep intra-slab rupture and mechanism transition of the 2024 Mw 7.4 Calama earthquake"
+  authors: "**Jia, Z.**, Mao, W., Flores, M. C., Barra, S., Ruiz, S., Potin, B., Becker, T. W., Moreno, M., Baez, J. C., Ceroni, D., & Cabrera, L."
+  venue: Nature Communications
+  details: "16, 8140"
+  year: 2025
+  doi: 10.1038/s41467-025-63480-5
+  pdf: /assets/pdf/Jia_etal_Calama_2025_NatComms.pdf
+  story: /earthquakes/#calama2024
+
+- title: "Dual mechanism transition controls rupture development of large deep earthquakes"
+  authors: "**Jia, Z.**, Fan, W., Mao, W., Shearer, P. M., & May, D. A."
+  venue: AGU Advances
+  details: "6(3), e2025AV001701"
+  year: 2025
+  doi: 10.1029/2025AV001701
+  pdf: /assets/pdf/Jia_etal_DeepEQ_2025_AGUAdvances.pdf
+  story: /earthquakes/#deepeq2025
+
+- title: "The multi-segment complexity of the 2024 Mw 7.5 Noto Peninsula earthquake governs tsunami generation"
+  authors: "Kutschera, F., **Jia, Z.**, Oryan, B., Wong, J. W. C., Fan, W., & Gabriel, A.-A."
+  venue: Geophysical Research Letters
+  details: "51(21), e2024GL109790"
+  year: 2024
+  doi: 10.1029/2024GL109790
+  pdf: /assets/pdf/Fabian_et_al_2024_Noto.pdf
+  story: /earthquakes/#noto2024
+
+- title: "The complex dynamics of the 2023 Kahramanmaraş, Turkey, Mw 7.8–7.7 earthquake doublet"
+  authors: "**Jia, Z.**, Jin, Z., Marchandon, M., Ulrich, T., Gabriel, A.-A., Fan, W., Shearer, P. M., Zou, X., Rekoske, J., Bulut, F., Garagon, A., & Fialko, Y."
+  venue: Science
+  details: "381(6661), 985–990"
+  year: 2023
+  doi: 10.1126/science.adi0685
+  pdf: /assets/pdf/Jia_et_al_Turkey_2023_Science.pdf
+  badges: [Cover]
+  story: /earthquakes/#turkey2023
+
+- title: "The 2021 South Sandwich Island Mw 8.2 earthquake: A slow event sandwiched between regular ruptures"
+  authors: "**Jia, Z.**, Zhan, Z., & Kanamori, H."
+  venue: Geophysical Research Letters
+  details: "49(3), e2021GL097104"
+  year: 2022
+  doi: 10.1029/2021GL097104
+  pdf: /assets/pdf/Jia_et_al_SouthSandwich_2021.pdf
+  story: /earthquakes/#sandwich2021
+
+- title: "Bayesian differential moment tensor inversion: Theory and application to the North Korea nuclear tests"
+  authors: "**Jia, Z.**, Zhan, Z., & Helmberger, D."
+  venue: Geophysical Journal International
+  details: "229(3), 2034–2046"
+  year: 2022
+  doi: 10.1093/gji/ggac053
+  pdf: /assets/pdf/Jia_et_al_DiffMT_2021.pdf
+  story: /earthquakes/#diffmt2022
+
+- title: "Resolving earthquake source complexities in the heterogeneous Earth"
+  authors: "**Jia, Z.**"
+  venue: PhD thesis, California Institute of Technology
+  year: 2022
+  doi: 10.7907/na72-6395
+
+- title: "Determination of near surface shear-wave velocities in the central Los Angeles Basin with dense arrays"
+  authors: "**Jia, Z.**, & Clayton, R. W."
+  venue: "Journal of Geophysical Research: Solid Earth"
+  details: "126, e2020JB021369"
+  year: 2021
+  doi: 10.1029/2020JB021369
+  pdf: /assets/pdf/Jia_et_al_LABasin_2021_JGR.pdf
+  badges: [Cover]
+  story: /earthquakes/#labasin2021
+
+- title: "Tonga slab morphology and stress variations controlled by a relic slab: Implications for deep earthquakes in the Tonga-Fiji region"
+  authors: "Liu, H., Gurnis, M., Leng, W., **Jia, Z.**, & Zhan, Z."
+  venue: Geophysical Research Letters
+  details: "48, e2020GL091331"
+  year: 2021
+  doi: 10.1029/2020GL091331
+  pdf: /assets/pdf/Liu_et_al_Tonga_2021_GRL.pdf
+  story: /earthquakes/#tonga2021
+
+- title: "Multifault models of the 2019 Ridgecrest sequence highlight complementary slip and fault junction instability"
+  authors: "**Jia, Z.**, Wang, X., & Zhan, Z."
+  venue: Geophysical Research Letters
+  details: "47, e2020GL089802"
+  year: 2020
+  doi: 10.1029/2020GL089802
+  pdf: /assets/pdf/Jia_et_al_Ridgecrest_2020_GRL.pdf
+  story: /earthquakes/#ridgecrest2020
+
+- title: "The 2018 Fiji Mw 8.2 and 7.9 deep earthquakes: One doublet in two slabs"
+  authors: "**Jia, Z.**, Shen, Z., Zhan, Z., Li, C., Peng, Z., & Gurnis, M."
+  venue: Earth and Planetary Science Letters
+  details: "531, 115997"
+  year: 2020
+  doi: 10.1016/j.epsl.2019.115997
+  pdf: /assets/pdf/Jia_et_al_FijiDoublet_2020_EPSL.pdf
+  story: /earthquakes/#fiji2018
+
+- title: "Extracting dispersion curves from ambient noise correlations using deep learning"
+  authors: "Zhang, X.\\*, **Jia, Z.**, Ross, Z. E., & Clayton, R. W."
+  venue: IEEE Transactions on Geoscience and Remote Sensing
+  details: "58(12), 8932–8939"
+  year: 2020
+  doi: 10.1109/TGRS.2020.2992043
+  pdf: /assets/pdf/Zhang_Jia_et_al_MLDispersion_2020_IEEETGRS.pdf
+  story: /earthquakes/#dispersion2020
+
+- title: "gCAPjoint, a software package for full moment tensor inversion of moderately strong earthquakes with local and teleseismic waveforms"
+  authors: "Bai, Q.\\*, Ni, S., Chu, R., & **Jia, Z.**"
+  venue: Seismological Research Letters
+  details: "91(6), 3550–3562"
+  year: 2020
+  doi: 10.1785/0220200031
+  pdf: /assets/pdf/Bai_et_al_gCAPjoint_2020_SRL.pdf
+  story: /earthquakes/#gcapjoint2020
+
+- title: "Hierarchical interlocked orthogonal faulting in the 2019 Ridgecrest earthquake sequence"
+  authors: "Ross, Z. E., Idini, B., **Jia, Z.**, Stephenson, O. L., Zhong, M., Wang, X., Zhan, Z., Simons, M., Fielding, E. J., Yun, S.-H., Hauksson, E., Moore, A. W., Liu, Z., & Jung, J."
+  venue: Science
+  details: "366(6463), 346–351"
+  year: 2019
+  doi: 10.1126/science.aaz0109
+  pdf: /assets/pdf/Ross_Idini_Jia_et_al_Ridgecrest_2019_Science.pdf
+  story: /earthquakes/#ridgecrest2019
+
+- title: "The cause of the 2011 Hawthorne (Nevada) earthquake swarm constrained by seismic and InSAR methods"
+  authors: "Zha, X., **Jia, Z.**, Dai, Z., & Lu, Z."
+  venue: Journal of Geodesy
+  details: "93(6), 899–909"
+  year: 2019
+  doi: 10.1007/s00190-018-1212-5
+  pdf: /assets/pdf/Zha_et_al_Hawthorne_2019_JG.pdf
+  story: /earthquakes/#hawthorne2019
+
+- title: "Joint inversion for earthquake depths using local waveforms and amplitude spectra of Rayleigh waves"
+  authors: "**Jia, Z.**, Ni, S., Chu, R., & Zhan, Z."
+  venue: Pure and Applied Geophysics
+  details: "174(1), 261–277"
+  year: 2017
+  doi: 10.1007/s00024-016-1373-1
+  pdf: /assets/pdf/Jia_et_al_JointDepth_2017_PAAG.pdf
+  story: /earthquakes/#depth2017
+
+- title: "CAPjoint, a computer software package for joint inversion of moderate earthquake source parameters with local and teleseismic waveforms"
+  authors: "Chen, W., Ni, S., Kanamori, H., Wei, S., **Jia, Z.**, & Zhu, L."
+  venue: Seismological Research Letters
+  details: "86(2A), 432–441"
+  year: 2015
+  doi: 10.1785/0220140167
+  pdf: /assets/pdf/Chen_et_al_CAPjoint_2015_SRL.pdf
+  story: /earthquakes/#capjoint2015
+
+- title: "Preliminary study on aftershock decay rate of the 2013 Ms 7.0 Lushan earthquake"
+  authors: "**Jia, Z.**, Chen, W., & Chu, R."
+  venue: Earthquake Science
+  details: "26(3), 185–190"
+  year: 2013
+  doi: 10.1007/s11589-013-0050-z
+  pdf: /assets/pdf/Jia_et_al_Lushan_2013_EqSci.pdf
+  story: /earthquakes/#lushan2013

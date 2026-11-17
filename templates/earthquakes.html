@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+
+{% macro study_links(s) -%}
+<div class="links">
+  {% for l in s.links %}<a href="{{ l.url }}">{{ icon(l.icon or 'external') }}{{ l.label }}</a>{% endfor %}
+</div>
+{%- endmacro %}
+
+{% block main %}
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">{{ page.eyebrow }}</span>
+    <h1>{{ page.heading or page.title }}</h1>
+    <p class="lead">{{ page.lead | mdi }}</p>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap">
+    {% if content %}<div class="prose" style="margin-bottom: 36px">{{ content }}</div>{% endif %}
+
+    <div class="theme-intro">
+      {% for t in data.studies.themes if t.intro %}
+      <div><h3>{{ t.title }}</h3><p>{{ t.intro | mdi }}</p></div>
+      {% endfor %}
+    </div>
+
+    <div class="filters" role="toolbar" aria-label="Filter studies by theme">
+      <button type="button" data-filter="all" aria-pressed="true">All studies</button>
+      {% for t in data.studies.themes %}<button type="button" data-filter="{{ t.key }}" aria-pressed="false">{{ t.title }}</button>{% endfor %}
+    </div>
+
+    <div class="studies" data-group>
+      {% for s in data.studies.entries if s.feature %}
+      <article class="study" id="{{ s.id }}" data-themes="{{ s.themes | join(' ') }}">
+        <figure class="study-media">
+          {% set main = s.images[0] %}
+          <a class="frame zoom" href="{{ main.src }}" data-caption="{{ main.caption | striptags }}"><img src="{{ main.src }}" alt="{{ main.alt or (main.caption | striptags) }}" loading="lazy" decoding="async"></a>
+          <figcaption>{{ main.caption | mdi }}</figcaption>
+          {% if s.images | length > 1 %}
+          <div class="thumbs">
+            {% for im in s.images[1:] %}<a class="zoom" href="{{ im.src }}" data-caption="{{ im.caption | striptags }}"><img src="{{ im.src }}" alt="{{ im.alt or (im.caption | striptags) }}" loading="lazy" decoding="async"></a>{% endfor %}
+          </div>
+          {% endif %}
+        </figure>
+        <div class="study-body">
+          <div class="when"><span class="chip chip--accent">{{ s.when }}</span>{% for b in s.badges or [] %}<span class="chip">{{ b }}</span>{% endfor %}</div>
+          <h2>{{ s.event }}</h2>
+          <p class="ref">{{ s.authors | mdi }} ({{ s.year }}). {{ s.title }}. <i>{{ s.venue }}</i>.</p>
+          <div class="summary">{{ s.summary | md }}</div>
+          {% if s.finding %}<div class="finding"><b>Main finding</b>{{ s.finding | mdi }}</div>{% endif %}
+          {{ study_links(s) }}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <section data-group style="margin-top: 64px">
+      <div class="section-head">
+        <span class="label">More studies</span>
+        <h2>Methods, collaborations, and earlier work</h2>
+      </div>
+      <div class="mini-grid">
+        {% for s in data.studies.entries if not s.feature %}
+        <article class="mini" id="{{ s.id }}" data-themes="{{ s.themes | join(' ') }}">
+          {% if s.image %}<a class="mini-img zoom" href="{{ s.image }}" data-caption="{{ s.event }}"><img src="{{ s.image }}" alt="Figure from the study: {{ s.event }}" loading="lazy" decoding="async"></a>{% endif %}
+          <div class="when">{{ s.when }}</div>
+          <h3>{{ s.event }}</h3>
+          <p>{{ s.summary | mdi }}</p>
+          <p class="ref">{{ s.authors | mdi }} ({{ s.year }}), <i>{{ s.venue }}</i>.{% for l in s.links %} <a href="{{ l.url }}">{{ l.label }}</a>{% if not loop.last %} ·{% endif %}{% endfor %}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

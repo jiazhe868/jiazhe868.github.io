@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+{% block main %}
+<section class="wrap notfound">
+  <span class="label">404</span>
+  <h1>This page does not exist</h1>
+  <p class="muted">The site was reorganized in November 2026, and some old addresses moved.</p>
+  <div class="btn-row" style="justify-content: center">
+    <a class="btn" href="/">Home{{ icon('arrow') }}</a>
+    <a class="btn btn--ghost" href="/publications/">Publications</a>
+    <a class="btn btn--ghost" href="/earthquakes/">Earthquakes</a>
+  </div>
+</section>
+{% endblock %}
